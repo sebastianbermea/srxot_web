@@ -1,15 +1,19 @@
-import srxotlogo from './assets/srxotlogo.svg'
 import './App.css'
+import NavBar from './components/NavBar'
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Inicio from './pages/Inicio';
+
 
 function App() {
   return (
-    <>
-      <div>
-        <img src={srxotlogo} className="logo" alt="Sr. Xot logo" />
-      </div>
-      <h1>Proximamente</h1>
-     
-    </>
+    <div className='App'>
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path='/' exact Component={Inicio}/>
+        </Routes>
+      </Router>
+    </div>
   )
 }
 
