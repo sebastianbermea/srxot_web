@@ -1,9 +1,13 @@
 .divider {
     color: var(--pink);
-    text-align: center;
-    font-size: max(6vw, 36px);
+
+    font-size: max(6vw, 28px);
     width: 100%;
-    margin: 40px 0;
+    margin: 16px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 16px;
 }
 
 @media (max-width: 680px) {
