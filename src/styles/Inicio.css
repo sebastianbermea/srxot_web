@@ -1,0 +1,13 @@
+.divider {
+    color: var(--pink);
+    text-align: center;
+    font-size: max(6vw, 36px);
+    width: 100%;
+    margin: 40px 0;
+}
+
+@media (max-width: 680px) {
+    .divider {
+        margin: 30px 0;
+    }
+}

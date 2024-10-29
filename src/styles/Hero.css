@@ -45,7 +45,7 @@
 @media (max-width: 680px) {
     .hero-img {
         width: 100%;
-        min-height: 520px;
+        min-height: 500px;
         object-fit: cover;
     }
 
