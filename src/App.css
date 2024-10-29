@@ -3,12 +3,20 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    font-family: Brother1816;
+    font-family: AlternateGotNO2;
 }
 
 :root {
-    background-color: #f8efe8;
-    color: #1d1d1d;
+    --black: #1d1d1d;
+    --beige: #f8efe8;
+    --blue: #2a509f;
+    --pink: #e6007e;
+    background-color: var(--beige);
+    color: var(--black);
+}
+
+body{
+    margin: 0;
 }
 
 

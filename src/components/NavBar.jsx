@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import srxotlogo from '../assets/srxotlogo.svg';
+import srxotlogo from '../assets/srxot_horizontal.svg';
 import {Link, NavLink} from "react-router-dom";
 import '../styles/Navbar.css';
 

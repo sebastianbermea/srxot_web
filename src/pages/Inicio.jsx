@@ -1,8 +1,16 @@
 import React from 'react'
+import Hero from '../components/Hero'
+import ImageC from '../components/ImageC'
+import { img_data } from "../Data"
 
 function Inicio() {
   return (
-    <div>Inicio</div>
+    <>
+      <Hero />
+      <ImageC data={img_data[0]} />
+    </>
+   
+    
   )
 }
 
