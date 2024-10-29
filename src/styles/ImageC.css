@@ -48,12 +48,12 @@
     }
 
     .imageC h2 {
-        font-size: 11vw;
+        font-size: min(11vw, 48px);
         margin: 0 20px;
     }
 
     .imageC p {
-        font-size: max(5vw,18px);
+        font-size: min(5vw,20px);
         padding: 0 25px;
     }
 
