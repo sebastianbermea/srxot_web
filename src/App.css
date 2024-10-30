@@ -29,3 +29,8 @@ body{
     font-family: Brother1816;
     src: url("../src/assets/fonts/Brother1816Printed-Medium.otf");
 }
+
+@font-face {
+    font-family: Keynote;
+    src: url("../src/assets/fonts/FilmotypeKeynote.otf");
+}

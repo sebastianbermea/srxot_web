@@ -3,6 +3,7 @@ import NavBar from './components/NavBar'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Inicio from './pages/Inicio';
 import Footer from './components/Footer';
+import Premio from './pages/Premio';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' exact Component={Inicio}/>
+          <Route path='/premioocastigo' exact Component={Premio}/>
         </Routes>
         <Footer/>
       </Router>
