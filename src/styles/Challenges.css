@@ -1,0 +1,26 @@
+.challenges .challenge {
+    display: flex;
+    padding: 16px 8px 8px 0;
+}
+
+.challenges .number {
+    padding: 0 24px;
+    font-family: keynote;
+}
+
+.challenges {
+    left: 4vw;
+    background-color: white;
+    width: 95%;
+    color: var(--blue);
+    font-size: max(3vw, 28px);
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+    padding: 16px 0 4px 0;
+    border-radius: 8px;
+  height: auto;
+}
+
+

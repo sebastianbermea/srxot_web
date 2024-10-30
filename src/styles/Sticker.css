@@ -1,0 +1,33 @@
+.game .sticker {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 0;
+    position: relative;
+    background-color: transparent;
+    border-width: 0;
+}
+
+.game .current {
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    right: 50%;
+    height: 36px;
+    transform: translate(-50%, 0%);
+    transition: 0.5s;
+}
+
+.game img {
+    width: 80%;
+    max-height: 100px;
+    max-width: 100px;
+}
+
+@media (max-width: 680px) {
+    .game .sticker {
+        width: 40%;
+
+    }
+}

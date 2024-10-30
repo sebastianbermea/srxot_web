@@ -45,65 +45,33 @@ h4 {
     border-width: 0;
 }
 
+.game_grid{
+    width: 100%;
+}
+
 .game {
     width: 95%;
-    display: grid;
-    padding: 32px 0;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 24px 15px;
-}
-
-.game .sticker {
-    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    padding: 12px 0;
+    align-self: center;
+    justify-self: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-.game img {
-    width: 80%;
-    max-height: 100px;
-    max-width: 100px;
-}
 
-.descripcion{
+.descripcion {
     padding: 20px 0 100px 0;
     color: var(--black);
     font-size: max(2vw, 16px);
 }
 
-.game_margin{
-    height: 400px;
-}
 
-.challenges{
-    position: absolute;
-    top: 120px;
-    left: 4vw;
-    background-color: white;
-    width: 80vw;
-    color: var(--blue);
-    font-size: max(3vw, 28px);
-    display: flex;
-    flex-direction: column;
 
-}
 
-.challenges .challenge{
-    display: flex;
-    padding: 24px 8px 0 0;
-}
-
-.challenges .number{
-    padding: 2px 16px;
-    font-family: keynote;
-}
 
 @media (max-width: 680px) {
     .game {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 48px 24px;
         width: 80%;
     }
 }
