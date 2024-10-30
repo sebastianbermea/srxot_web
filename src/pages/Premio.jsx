@@ -24,7 +24,7 @@ import Challenges from '../components/Challenges';
 
 function Premio() {
     const [category, setCategory] = useState(0);
-    const [sticker, setSticker] = useState(1);
+    const [sticker, setSticker] = useState(0);
 
     const isMobile = useMediaQuery({ query: '(max-width: 680px)' })
 
