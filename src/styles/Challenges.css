@@ -16,10 +16,10 @@
     font-size: max(3vw, 28px);
     display: flex;
     flex-direction: column;
-    align-self: center;
-    justify-self: center;
-    padding: 16px 0 4px 0;
+
+    padding: 16px 0 4px;
     border-radius: 8px;
+    margin: 0 2.5%;
   height: auto;
 }
 
