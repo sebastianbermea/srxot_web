@@ -52,9 +52,8 @@ h4 {
 .game {
     width: 95%;
     display: flex;
-    padding: 12px 0;
-    align-self: center;
-    justify-self: center;
+    padding: 12px 2.5%;
+
     flex-wrap: wrap;
     justify-content: space-around;
 }
@@ -73,5 +72,6 @@ h4 {
 @media (max-width: 680px) {
     .game {
         width: 80%;
+        padding: 12px 10%;
     }
 }

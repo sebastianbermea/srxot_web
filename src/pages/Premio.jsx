@@ -4,7 +4,7 @@ import { premio_categories } from "../Data"
 import leftarrow from '../assets/icons/arrow_left.svg';
 import rightarrow from '../assets/icons/arrow_right.svg';
 import Sticker from '../components/Sticker';
-import { img_data } from "../Data"
+import { img_data, game } from "../Data"
 import ImageC from '../components/ImageC'
 import { useMediaQuery } from 'react-responsive'
 
@@ -75,32 +75,32 @@ function Premio() {
                             <Sticker sticker={sticker1} id={1} current={sticker} select={changeSticker} />
                             <Sticker sticker={sticker2} id={2} current={sticker} select={changeSticker} />
                         </div>
-                        {sticker > 0 && sticker >= 1 && sticker<=2 && <Challenges />}
+                        {sticker > 0 && sticker >= 1 && sticker <= 2 && <Challenges data={game[category][sticker - 1]} />}
                         <div className='game'>
                             <Sticker sticker={sticker3} id={3} current={sticker} select={changeSticker} />
                             <Sticker sticker={sticker4} id={4} current={sticker} select={changeSticker} />
                         </div>
-                        {sticker > 0 && sticker >= 3 && sticker <= 4 && <Challenges />}
+                        {sticker > 0 && sticker >= 3 && sticker <= 4 && <Challenges data={game[category][sticker - 1]} />}
                         <div className='game'>
                             <Sticker sticker={sticker5} id={5} current={sticker} select={changeSticker} />
                             <Sticker sticker={sticker6} id={6} current={sticker} select={changeSticker} />
                         </div>
-                        {sticker > 0 && sticker >= 5 && sticker <= 6 && <Challenges />}
+                        {sticker > 0 && sticker >= 5 && sticker <= 6 && <Challenges data={game[category][sticker - 1]} />}
                         <div className='game'>
                             <Sticker sticker={sticker7} id={7} current={sticker} select={changeSticker} />
                             <Sticker sticker={sticker8} id={8} current={sticker} select={changeSticker} />
                         </div>
-                        {sticker > 0 && sticker >= 7 && sticker <= 8 && <Challenges />}
+                        {sticker > 0 && sticker >= 7 && sticker <= 8 && <Challenges data={game[category][sticker - 1]} />}
                         <div className='game'>
                             <Sticker sticker={sticker9} id={9} current={sticker} select={changeSticker} />
                             <Sticker sticker={sticker10} id={10} current={sticker} select={changeSticker} />
                         </div>
-                        {sticker > 0 && sticker >= 9 && sticker <= 10 && <Challenges />}
+                        {sticker > 0 && sticker >= 9 && sticker <= 10 && <Challenges data={game[category][sticker - 1]} />}
                         <div className='game'>
                             <Sticker sticker={sticker11} id={11} current={sticker} select={changeSticker} />
                             <Sticker sticker={sticker12} id={12} current={sticker} select={changeSticker} />
                         </div>
-                        {sticker > 0 && sticker >= 11 && sticker <= 12 && <Challenges />}
+                        {sticker > 0 && sticker >= 11 && sticker <= 12 && <Challenges data={game[category][sticker - 1]} />}
                     </div>
                     :
                     <div className='game_grid'>
@@ -112,7 +112,7 @@ function Premio() {
                             <Sticker sticker={sticker9} id={9} current={sticker} select={changeSticker} />
                             <Sticker sticker={sticker11} id={11} current={sticker} select={changeSticker} />
                         </div>
-                        {sticker>0 && sticker%2==1 && <Challenges />}
+                        {sticker>0 && sticker%2==1 && <Challenges data ={game[category][sticker-1]}/>}
                         <div className='game'>
                             <Sticker sticker={sticker2} id={2} current={sticker} select={changeSticker} />
                             <Sticker sticker={sticker4} id={4} current={sticker} select={changeSticker} />
@@ -121,7 +121,7 @@ function Premio() {
                             <Sticker sticker={sticker10} id={10} current={sticker} select={changeSticker} />
                             <Sticker sticker={sticker12} id={12} current={sticker} select={changeSticker} />
                         </div>
-                        {sticker > 0 && sticker % 2 == 0 && <Challenges />}
+                        {sticker > 0 && sticker % 2 == 0 && <Challenges data={game[category][sticker-1]} />}
                     </div>
 
             }
