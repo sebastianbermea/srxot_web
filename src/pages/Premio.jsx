@@ -34,6 +34,7 @@ function Premio() {
         } else {
             setCategory(0);
         }
+        setSticker(0);
     }
     function prevCategory() {
         if (category > 0) {
@@ -41,6 +42,8 @@ function Premio() {
         } else {
             setCategory(3);
         }
+
+        setSticker(0);
     }
 
     function changeSticker(i){
