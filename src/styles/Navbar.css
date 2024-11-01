@@ -41,8 +41,8 @@ nav .menu {
     position: absolute;
     right: 12px;
     top: 12px;
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
 }
 
 nav .mobile {
@@ -53,6 +53,10 @@ nav .mobile {
 @media (max-width: 680px) {
     nav .menu {
         display: flex;
+    }
+
+    nav .icon {
+        padding: 4px 0;
     }
 
     nav .mobile {
@@ -84,15 +88,15 @@ nav .mobile {
         color: white;
     }
 
-    nav .mobile .social{
+    nav .mobile .social {
         position: absolute;
         bottom: 0;
-       
+
     }
 
     nav .mobile .social img {
-       width: 42px;
-      padding: 12px;
+        width: 42px;
+        padding: 12px;
     }
 
     nav .mobile a.active {

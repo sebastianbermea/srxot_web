@@ -11,10 +11,10 @@
 
 .game .current {
     position: absolute;
-    bottom: -12px;
+    bottom: -20px;
     left: 50%;
     right: 50%;
-    height: 36px;
+    height: 44px;
     transform: translate(-50%, 0%);
     transition: 0.5s;
 }

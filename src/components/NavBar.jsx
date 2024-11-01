@@ -85,8 +85,8 @@ function NavBar() {
           {
             navLinks.map((link, index)=>{
               return (
-                <li>
-                  <NavLink key={index} to={link.href}>{link.title}</NavLink>
+                <li key = { index }>
+                  <NavLink  to={link.href}>{link.title}</NavLink>
                 </li>
               );
             })
@@ -118,7 +118,7 @@ function NavBar() {
                 <motion.div
                   variants={mobileLinkVars}
                 >
-                  <NavLink key={index} to={link.href} onClick={()=>setMenuOpen(false)}>{link.title}</NavLink>
+                  <NavLink key={index+10} to={link.href} onClick={()=>setMenuOpen(false)}>{link.title}</NavLink>
                 </motion.div>
               );
             })

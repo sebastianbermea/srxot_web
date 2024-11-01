@@ -355,99 +355,99 @@ export const game = [
     [
         // 1
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Yo nunca nunca, 5 dedos.",
+            "Historia.",
+            "Gira la botella, verdad o reto.",
+            "Categoria: Autos.",
+            "Todos escogeran un reto para ti."
         ],
         // 2
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Categoria: Peliculas.",
+            "Fui... al Zoologico.",
+            "Florero.",
+            "Hombres toman",
+            "17."
         ],
         // 3
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Preguntas.",
+            "Categoria: Series.",
+            "Gira la botella, verdad o reto.",
+            "Yo nunca nunca, 5 dedos.",
+            "Palabra prohibida."
         ],
         // 4
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Todos escogeran un reto para ti.",
+            "Categoria: Actores.",
+            "No te rias!",
+            "Yo nunca nunca, 3 dedos.",
+            "Fui... a una fiesta."
         ],
         // 5
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Shot xot.",
+            "Categoria: Marcas de cevezas.",
+            "Palabra prohibida.",
+            "Historia.",
+            "Regla de oro."
         ],
         // 6
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Yo nunca nunca, 5 dedos.",
+            "Shot xot.",
+            "Cascada.",
+            "Categoria: Libros.",
+            "Gira la botella, verdad o reto."
         ],
         // 7
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Florero.",
+            "Categoria: Paises.",
+            "Preguntas.",
+            "El/La mas atractiv@.",
+            "Fui... al Mercado."
         ],
         // 8
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Mujeres toman.",
+            "El/La mas joven toma.",
+            "Gira la botella, verdad o reto.",
+            "Categoria: Animales.",
+            "Shot xot."
         ],
         // 9
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Yo nunca nunca, 3 dedos.",
+            "Shot xot.",
+            "Categoria: Equipos de Futbol.",
+            "Palabra prohibida.",
+            "El/La mas viej@ toma."
         ],
         // 10
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Categoria: Equipos de Baseball.",
+            "Todos escogeran un reto para ti.",
+            "Historia.",
+            "Regla de oro.",
+            "Gira la botella, verdad o reto."
         ],
         // 11
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Gira la botella, verdad o reto.",
+            "Categoria: Podcasts.",
+            "No te rias!",
+            "Todos toman.",
+            "Yo nunca nunca, 5 dedos."
         ],
         // 12
         [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "17.",
+            "Categoria: Universidades.",
+            "Yo nunca nunca, 3 dedos.",
+            "Fui... de viaje.",
+            "Shot xot."
         ]
 
     ]
