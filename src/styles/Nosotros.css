@@ -1,0 +1,26 @@
+.nosotros {
+    padding: 24px;
+}
+
+.nosotros p {
+    font-size: max(18px, 2vw);
+    margin: 0;
+    text-align: justify;
+}
+
+.nosotros img {
+    padding-top: 24px;
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
+}
+
+@media (max-width: 680px) {
+    .nosotros {
+        padding: 12px;
+    }
+
+    .nosotros img {
+        height: 50vw;
+    }
+}
