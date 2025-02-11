@@ -1,5 +1,5 @@
 import React from 'react'
-import img1 from '../assets/images/Bottle6.png';
+import img1 from '../assets/images/BotellaMano.png';
 import srxotlogo from '../assets/srxotlogo.svg';
 import { Link} from "react-router-dom";
 import '../styles/Hero.css';

@@ -1,5 +1,5 @@
 import React from 'react'
-import srxotcantarito from '../assets/images/Bottle3.jpg';
+import srxotcantarito from '../assets/images/Tequila.jpg';
 import saborcantarito from '../assets/images/saborCantarito.png';
 import '../styles/Productos.css';
 

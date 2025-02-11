@@ -1,7 +1,7 @@
-import img1 from './assets/images/Bottle3.jpg';
-import img2 from './assets/images/Bottle7.png';
-import img3 from './assets/images/Bottle6.png';
-import img4 from './assets/images/Friends.jpg';
+import img1 from './assets/images/BotellaSayu.jpg';
+import img2 from './assets/images/FotoStickers.png';
+import img3 from './assets/images/Tequila.jpg';
+import img4 from './assets/images/Gente.jpg';
 
 import icon1 from './assets/icons/party_icon.svg';
 import icon2 from './assets/icons/reunion_icon.svg';

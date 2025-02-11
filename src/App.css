@@ -9,7 +9,7 @@
 :root {
     --black: #1d1d1d;
     --beige: #f8efe8;
-    --blue: #2a509f;
+    --blue: #333e7e;
     --pink: #e6007e;
     background-color: var(--beige);
     color: var(--black);

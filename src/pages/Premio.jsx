@@ -21,11 +21,14 @@ import sticker9 from '../assets/stickers/9.png';
 import sticker10 from '../assets/stickers/10.png';
 import sticker11 from '../assets/stickers/11.png';
 import sticker12 from '../assets/stickers/12.png';
+import stickerRandomIm from '../assets/stickers/Random.png';
 import Challenges from '../components/Challenges';
 
 function Premio() {
     const [category, setCategory] = useState(0);
     const [sticker, setSticker] = useState(0);
+    const [randomSticker, setRandomSticker] = useState(0);
+    const [randomNumber, setRandomNumber] = useState(0);
     const [selectorScope, selectorAnim] = useAnimate();
     const [stickerScope, stickerAnim] = useAnimate();
     const [challengeScope, challengeAnim] = useAnimate();
@@ -103,6 +106,9 @@ function Premio() {
             setSticker(0);
             setTimeout(() => {
                 setSticker(i);
+                setRandomSticker(Math.round(Math.random()*11));
+                setRandomNumber(Math.round(Math.random() * 4))
+                console.log(randomSticker);
             }, 250);
         }
     }
@@ -168,6 +174,12 @@ function Premio() {
                         <AnimatePresence>
                             {sticker > 0 && sticker >= 11 && sticker <= 12 && <Challenges data={game[category][sticker - 1]} />}
                         </AnimatePresence>
+                        <div className='game'>
+                            <Sticker sticker={stickerRandomIm} id={13} current={sticker} select={changeSticker} />
+                        </div>
+                        <AnimatePresence>
+                            {sticker > 0 && sticker == 13  && <Challenges data={game[category][randomSticker]} isRandom ={true} n = {randomNumber}/>}
+                        </AnimatePresence>
                     </div>
                     :
                     <div ref={stickerScope} className='game_grid'>
@@ -180,7 +192,7 @@ function Premio() {
                             <Sticker sticker={sticker11} id={11} current={sticker} select={changeSticker} />
                         </div>
                         <AnimatePresence>
-                            {sticker > 0 && sticker % 2 == 1 && <Challenges data={game[category][sticker - 1]} />}
+                            {sticker > 0 && sticker % 2 == 1 && sticker<13 && <Challenges data={game[category][sticker - 1]} />}
                         </AnimatePresence>
                         <div className='game'>
                             <Sticker sticker={sticker2} id={2} current={sticker} select={changeSticker} />
@@ -191,7 +203,13 @@ function Premio() {
                             <Sticker sticker={sticker12} id={12} current={sticker} select={changeSticker} />
                         </div>
                         <AnimatePresence>
-                            {sticker > 0 && sticker % 2 == 0 && <Challenges data={game[category][sticker - 1]} />}
+                            {sticker > 0 && sticker % 2 == 0 && sticker < 13 && <Challenges data={game[category][sticker - 1]} />}
+                        </AnimatePresence>
+                        <div className='game'>
+                            <Sticker sticker={stickerRandomIm} id={13} current={sticker} select={changeSticker} />
+                        </div>
+                        <AnimatePresence>
+                            {sticker > 0 && sticker == 13 && <Challenges data={game[category][randomSticker]} isRandom={true} n={randomNumber} />}
                         </AnimatePresence>
                     </div>
 

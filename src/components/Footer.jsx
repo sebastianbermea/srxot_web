@@ -18,7 +18,7 @@ function Footer() {
         </div>
         <div className='center'>
           <img src={srxotlogo} alt="Sr. Xot logo negro" />
-          Copyright © 2024 Sr Xot ®
+          Copyright © 2025 Sr Xot ®
         </div>
         <div className='socialmedia'>
           <a href="https://www.instagram.com/sr.xot">
