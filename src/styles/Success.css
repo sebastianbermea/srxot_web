@@ -1,0 +1,26 @@
+.success-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.success-wrapper a{
+    all: unset;
+    cursor: pointer;
+    border: 1px solid var(--pink);
+    padding: 10px;
+    border-radius: 8px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    color: var(--pink);
+    padding-top: 16px;
+    font-size: 1.3rem;
+    transition: 0.3s;
+}
+
+.success-wrapper a:hover {
+    scale: 103%;
+}   

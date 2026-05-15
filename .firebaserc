@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "srxot-web"
+  },
+  "targets": {
+    "srxot-web": {
+      "hosting": {
+        "landing": [
+          "srxot-web"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -1,0 +1,18 @@
+.timer-container {
+    background-color: var(--pink);
+    color: white;
+    padding: 6px 10px;
+    padding-top: 8px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    display: inline-block;
+    margin-bottom: 12px;
+    width: fit-content;
+}
+
+.timer-numbers {
+    font-weight: bold;
+    font-family: monospace;
+    margin-left: 5px;
+}

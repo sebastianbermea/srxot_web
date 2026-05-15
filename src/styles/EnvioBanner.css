@@ -1,0 +1,45 @@
+.banner {
+    overflow: hidden;
+    height: 50px;
+    background-color: var(--pink);
+    display: flex;
+}
+
+.banner_tracker {
+    display: flex;
+    width: max-content;
+    animation: anim 25s linear infinite;
+}
+
+.banner h2 {
+    color: white;
+    font-size: 20px;
+    width: 280px;
+    white-space: nowrap;
+}
+
+.banner-group {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.banner_item {
+    display: flex;
+    padding-right: 18px;
+}
+
+.banner_item img {
+    width: 24px;
+    padding-left: 2px;
+}
+
+@keyframes anim {
+
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

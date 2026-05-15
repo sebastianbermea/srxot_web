@@ -1,0 +1,67 @@
+
+
+*** PRODUCTOS ***
+
+ - Titulo
+ - Descripcion
+ - Imagen principal
+ - Precio: Puntual
+
+    * METADATOS *
+    - size: 
+        Texto de tamaño
+
+    - best:
+        [true, false]
+        Icono Best Seller
+    
+    - popular:
+        [true, false]
+        Lista de productos popular
+
+    - stock:
+        [Numero]
+        Numero disponible en dado caso de ser menor a 20 tendra el icono de casi agotado.
+    
+    - stickers:
+        [true, false]
+        Texto de esta botella tiene stickers
+
+    - img_1,
+      img_2,
+      img_3:
+        Link de imagenes extra de productos.
+    
+    - sizes:
+        Con tener el metadato se pone la opcion para seleccionar talla [Para ropa]
+    
+    - discount:
+        [price_id] con el descuento, ej "price_1SrMuGH5q3LGQ4gR3lLWswVX"
+        Se crea un price id nuevo con el precio descontado.
+        * Se necesita discount_limit *
+    -discount_limit:
+        [number] ej "1776232799"
+        Timestamp en segundos para cuando se termina el descuento.
+
+    
+
+*** CUPONES ***
+
+    Los cupones son para stripe,
+    Los codigos de promocion son para el cliente, estos son los que funcionan y sirven para trackear diferentes aplicaciones y/o usos.
+    Tambien sirve para cuando eliminas un cupon se eliminan todos los codigos derivados de el.
+    - Opciones son auto explicatorias dentro del entorno como Primer pedido, fecha de vencimiento, pedido minimo, etc.
+    - Regalo, poner oferta de 100% en producto para un solo uso por persona.
+
+
+*** ENVIOS ***
+
+    Se tendran dos ids de tarifas de envio la normal y la gratis dependiendo de el costo establecido,
+
+
+*** ENTORNO DE PRUEBAS ***
+
+    Actualizar clave secreta en stripe key en firebase
+    Actualizar webhook secret en firebase
+    Quitar productos de prueba
+    Actualizar Ids de envio

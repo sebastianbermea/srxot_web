@@ -1,5 +1,5 @@
 .contacto {
-    padding: 24px;
+    padding: 0 24px;
 }
 
 .contact-div {
@@ -14,8 +14,7 @@
     flex-direction: column;
 }
 
-form .field {
-
+.contacto form .field {
     height: 24px;
     background: white;
     border: none;
@@ -27,7 +26,7 @@ form .field {
     font-family: "Brother1816";
 }
 
-.field-mess {
+.contacto .field-mess {
     height: 120px;
     border-radius: 6px;
     resize: none;
@@ -38,27 +37,24 @@ form .field {
     font-size: 14px;
 }
 
-form button {
+.contacto form button {
     height: 48px;
-    background-color: var(--blue);
-    border-radius: 6px;
+    background-color: var(--pink);
+    border-radius: 8px;
+    padding-top: 8px;
     color: white;
     border: none;
     font-family: "AlternateGotNO2";
     font-size: 28px;
-    padding-top: 8px;
-    transition: .1s;
+    transition: .3s;
 }
 
-form button:hover {
-    background-color: #2d58b5;
+.contacto form button:hover {
+    scale: 102%;
 }
 
-form button:focus {
-    background-color: #22489a;
-}
 
-.social-media {
+.contacto .social-media {
     width: 35%;
     display: flex;
     flex-direction: column;
@@ -66,20 +62,31 @@ form button:focus {
     gap: 16px;
 }
 
-.social-media a {
+.contacto .social-media a {
     justify-content: center;
-    padding-right: 48px;
     display: flex;
     align-items: center;
     gap: 16px;
-    font-size: 48px;
+    font-size: 32px;
     text-decoration: none;
     color: var(--black);
+    transition: 0.3s scale;
+    align-content: center;
 }
 
-.social-media a img {
-    width: 84px;
-    padding-bottom: 10px;
+.contacto .social-media h6{
+    margin: 0;
+    font-size: 32px;
+    padding-bottom: 6px;
+}
+
+.contacto .social-media a:hover {
+   scale: 103%
+}
+
+.contacto .social-media a img {
+    width: 48px;
+    padding-bottom: 16px;
 }
 
 @media (max-width: 680px) {
@@ -94,7 +101,7 @@ form button:focus {
         width: 100%;
     }
 
-    .social-media {
+    .contacto .social-media {
         width: 100%;
         padding-top: 24px;
         flex-direction: row;
@@ -102,7 +109,7 @@ form button:focus {
         gap: 12px;
     }
 
-    .social-media a {
+    .contacto .social-media a {
         font-size: 20px;
         gap: 0;
         display: flex;
@@ -111,8 +118,8 @@ form button:focus {
         padding: 0;
     }
 
-    .social-media a img {
+    .contacto .social-media a img {
         width: 30px;
-       
+
     }
 }

@@ -118,14 +118,14 @@ function Premio() {
             <h1>#PREMIO O CASTIGO</h1>
             <h4>Elige tu tipo de ocasión y juega con tus stickers</h4>
             <div className='selector'>
-                <button onClick={prevCategory}>
+                <button className="selector-button" onClick={prevCategory}>
                     <img className='' src={leftarrow} alt="" />
                 </button>
                 <div ref={selectorScope} className='current'>
-                    <img src={premio_categories[category].icon} alt="" />
+                    <img className= "selector-title" src={premio_categories[category].icon} alt="" />
                     {premio_categories[category].title}
                 </div>
-                <button onClick={nextCategory}>
+                <button className="selector-button" onClick={nextCategory}>
                     <img className='' src={rightarrow} alt="" />
                 </button>
             </div>
@@ -236,7 +236,7 @@ function Premio() {
             <div className='descripcion'>
                 Selecciona tu sticker y numero para cumplir el reto
             </div>
-            <ImageC data={img_data[3]} />
+            <ImageC data={img_data[0]} />
         </div>
     )
 }

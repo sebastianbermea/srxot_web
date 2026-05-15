@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
-import srxotlogo from '../assets/srxot_horizontal.svg';
+import srxotlogo from '../assets/icons/srxot-horizontal.svg';
 import srxotwhite from '../assets/srxot_horizontal_white.svg';
-import {Link, NavLink} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import '../styles/Navbar.css';
-import menuIcon from '../assets/icons/menu.svg';
+import menuIcon from '../assets/icons/menu-icon.svg';
 import closeIcon from '../assets/icons/close.svg';
 import instagram from '../assets/icons/instagram_white.svg';
 import tiktok from '../assets/icons/tiktok_white.svg';
+import cart from '../assets/icons/cart.svg';
+import user from '../assets/icons/user.svg';
+
 import { AnimatePresence, motion } from "framer-motion";
+import { useCart } from '../contexts/cartContext';
+
 
 const navLinks = [
   { title: "Inicio", href: "/" },
-  { title: "Premio o Castigo", href: "/premioocastigo" },
-  { title: "Productos", href: "/productos" },
+  { title: "Jugar", href: "/premioocastigo" },
+  { title: "Tienda", href: "/tienda" },
   { title: "Nosotros", href: "/nosotros" },
   { title: "Contacto", href: "/contacto" },
 ];
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { openCart, cartItems } = useCart();
   const menuVars = {
     initial: {
       y: '-100vh',
@@ -75,69 +81,81 @@ function NavBar() {
 
   return (
     <nav>
-      <Link to="/">
-        <img className='icon' src={srxotlogo} alt="Sr. Xot logo" />
-        </Link>
-      {!menuOpen && <div className='menu' onClick={() => setMenuOpen(!menuOpen)}>
+      <div className='menu' onClick={() => setMenuOpen(!menuOpen)}>
         <img src={menuIcon} alt="" />
-        </div>}
-      <ul>
-          {
-            navLinks.map((link, index)=>{
-              return (
-                <li key = { index }>
-                  <NavLink  to={link.href}>{link.title}</NavLink>
-                </li>
-              );
-            })
-          }
-        </ul>
-        <AnimatePresence>
-        {menuOpen && 
-        <motion.div 
+      </div>
+      <ul className='left_menu'>
+        {
+          navLinks.map((link, index) => {
+            return (
+              <li key={index}>
+                <NavLink to={link.href}>{link.title}</NavLink>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <AnimatePresence>
+        {menuOpen &&
+          <motion.div
             variants={menuVars}
             initial="initial"
             animate="animate"
             exit="exit"
-        className='mobile'>
-          <div>
-          <img className='icon' src={srxotwhite} alt="Sr. Xot logo" />
-            <div className='menu' onClick={() => setMenuOpen(!menuOpen)}>
-              <img src={closeIcon} alt="" />
+            className='mobile'>
+            <div className='submenu_top'>
+              <div className='menu' onClick={() => setMenuOpen(!menuOpen)}>
+                <img src={closeIcon} alt="" />
+              </div>
+              <img className='icon' src={srxotwhite} alt="Sr. Xot logo" />
             </div>
-          </div>
-          <motion.div 
+            <motion.div
               variants={containerVars}
               initial="initial"
               animate="open"
               exit="initial"
-          className='submenu'>
-          {
-            navLinks.map((link, index) => {
-              return (
-                <motion.div
-                  variants={mobileLinkVars}
-                >
-                  <NavLink key={index+10} to={link.href} onClick={()=>setMenuOpen(false)}>{link.title}</NavLink>
-                </motion.div>
-              );
-            })
-          }
-            <motion.div 
+              className='submenu'>
+              {
+                navLinks.map((link, index) => {
+                  return (
+                    <motion.div
+                      key={link.title + index + 10}
+                      variants={mobileLinkVars}
+                    >
+                      <NavLink  to={link.href} onClick={() => setMenuOpen(false)}>{link.title}</NavLink>
+                    </motion.div>
+                  );
+                })
+              }
+              <motion.div
                 variants={mobileLinkVars}
-            className='social'>
-            <a href="https://www.instagram.com/sr.xot">
-              <img src={instagram} alt="instagram" />
-            </a>
-            
-            <a href='https://www.tiktok.com/@srxot'>
-              <img src={tiktok} alt="tiktok" />
-            </a>
+                className='social'>
+                <a href="https://www.instagram.com/sr.xot">
+                  <img src={instagram} alt="instagram" />
+                </a>
+
+                <a href='https://www.tiktok.com/@srxot'>
+                  <img src={tiktok} alt="tiktok" />
+                </a>
+              </motion.div>
             </motion.div>
           </motion.div>
-        </motion.div>
         }
       </AnimatePresence>
+      <Link to="/">
+        <img className='icon' src={srxotlogo} alt="Sr. Xot logo" />
+      </Link>
+      <div className='right_menu'>
+        <Link
+        to="/account">
+          <img src={user} alt="user" />
+        </Link>
+
+        <button className='cart' onClick={openCart}>
+          <img src={cart} alt="cart" />
+          <span className='counter'>{cartItems.length}</span>
+        </button>
+      </div>
     </nav>
   )
 }

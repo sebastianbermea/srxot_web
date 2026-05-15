@@ -5,6 +5,7 @@ import emailjs from '@emailjs/browser';
 import instagram from '../assets/icons/instagram.svg';
 import facebook from '../assets/icons/facebook2.svg';
 import tiktok from '../assets/icons/tiktok.svg';
+import whatsapp from '../assets/icons/whatsapp.svg';
 
 function Contacto() {
     const form = useRef();
@@ -23,9 +24,9 @@ function Contacto() {
                 (error) => {
                     console.log('FAILED...', error.text);
                 },
-                
+
             );
-            e.target.reset();
+        e.target.reset();
     };
 
     return (
@@ -36,21 +37,26 @@ function Contacto() {
                     <h4>¿Tienes alguna duda o sugerencia?</h4>
                     <input name='from_name' type="text" className='field' placeholder='Ingresa tu nombre' required />
                     <input name='from_email' type="email" className='field' placeholder='Ingresa tu email' required />
+
                     <textarea name='message' id="" className='field-mess' placeholder='Ingresa tu mensaje' required></textarea>
                     <button type='submit'>Enviar mensaje</button>
                 </form>
                 <div className='social-media'>
                     <a href="https://www.instagram.com/sr.xot">
                         <img src={instagram} alt="instagram" />
-                        @sr.xot
+                        <h6>  @sr.xot</h6>
                     </a>
                     <a href='https://www.tiktok.com/@srxot'>
                         <img src={tiktok} alt="tiktok" />
-                        @srxot
+                        <h6> @srxot</h6>
                     </a>
-                    <a href="https://www.facebook.com">
+                    <a href="https://www.facebook.com/share/1K9HQDqa8p/">
                         <img src={facebook} alt="facebook" />
-                        Sr. Xot
+                        <h6> sr. xot </h6>
+                    </a>
+                    <a href="https://wa.me/5218446785189">
+                        <img src={whatsapp} alt="whatsapp" />
+                        <h6> sr xot</h6>
                     </a>
 
                 </div>

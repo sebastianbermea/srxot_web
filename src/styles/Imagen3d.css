@@ -1,0 +1,68 @@
+.parallax-wrapper {
+    position: relative;
+    width: 100%;
+    height: 42vw;
+    /* Altura de la sección */
+    overflow: hidden;
+    display: flex;
+    padding: 100px 0;
+
+}
+
+.bg-columns {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: var(--pink);
+    align-items: center;
+}
+
+.column {
+    width: 50%;
+    height: 98%;
+
+}
+
+.column img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.parallax-floating-img {
+    position: absolute;
+    /* Centrado horizontal perfecto sobre la unión de las dos imágenes */
+    left: 25%;
+    top: 0%;
+
+
+    width: 50vw;
+    /* Tamaño de tu PNG */
+    z-index: 10;
+    /* Asegura que esté por encima */
+    pointer-events: none;
+    /* Para que no interfiera con clics en el fondo */
+}
+
+@media (max-width: 680px) {
+    .parallax-wrapper {
+        height: 50vw;
+    }
+
+    .parallax-floating-img {
+        position: absolute;
+
+        left: 18%;
+        top: 10%;
+
+        width: 62vw;
+
+    }
+
+    .parallax-wrapper {
+
+        padding: 0;
+        padding-top: 80px;
+        padding-bottom: 50px;
+    }
+}

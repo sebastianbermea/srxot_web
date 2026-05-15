@@ -9,7 +9,8 @@ hr {
     justify-self: center;
     display: flex;
     padding: 0 2.5%;
-    
+    position: relative;
+    z-index: 10;
 }
 
 .footer .links {
@@ -32,6 +33,14 @@ hr {
     color: var(--black);
     text-decoration: none;
     font-size: min(3vw, 40px);
+}
+
+.footer  a {
+    transition: 0.3s scale;
+}
+
+.footer a:hover{
+    scale: 103%;
 }
 
 .footer .center img {

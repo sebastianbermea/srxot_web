@@ -6,6 +6,7 @@ import srxotlogo from '../assets/srxotlogo_negro.svg';
 import instagram from '../assets/icons/instagram.svg';
 import facebook from '../assets/icons/facebook2.svg';
 import tiktok from '../assets/icons/tiktok.svg';
+import whatsapp from '../assets/icons/whatsapp.svg';
 
 function Footer() {
   return (
@@ -18,17 +19,20 @@ function Footer() {
         </div>
         <div className='center'>
           <img src={srxotlogo} alt="Sr. Xot logo negro" />
-          Copyright © 2025 Sr Xot ®
+          Copyright © 2026 Sr Xot ®
         </div>
         <div className='socialmedia'>
           <a href="https://www.instagram.com/sr.xot">
             <img src={instagram} alt="instagram" />
           </a>
-          <a href="https://www.facebook.com">
+          <a href="https://www.facebook.com/share/1K9HQDqa8p/">
             <img src={facebook} alt="facebook" />
           </a>
           <a href='https://www.tiktok.com/@srxot'>
             <img src={tiktok} alt="tiktok" />
+          </a>
+          <a href="https://wa.me/5218446785189">
+            <img src={whatsapp} alt="whatsapp" />
           </a>
         </div>
       </div>

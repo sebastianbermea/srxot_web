@@ -2,10 +2,13 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    top: 0;
     padding: 0.5rem;
+    top: 0;
     font-family: Brother1816;
+    position: fixed;
+    width: 100%;
+    z-index: 998;
+    background-color: var(--beige);
 }
 
 nav .icon {
@@ -15,6 +18,39 @@ nav .icon {
 
 nav ul {
     display: flex;
+    padding-inline-start: 10px;
+    font-size: max(1.2vw, 10px);
+    width: 47%;
+}
+
+nav .right_menu {
+    width: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    padding-inline-end: 18px;
+}
+
+nav .right_menu img {
+    width: 32px;
+    height: 32px;
+    padding: 0 10px;
+}
+
+
+nav .right_menu .counter {
+    position: absolute;
+    background-color: var(--pink);
+    color: white;
+    border-radius: 12%;
+    width: 18px;
+    height: 18px;
+    align-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 18px;
+    right: 32px;
 }
 
 nav ul li {
@@ -24,35 +60,57 @@ nav ul li {
 nav ul li a {
     display: block;
     text-decoration: none;
-    padding: 0.5rem;
+    padding: 0.2rem;
     margin: 0 0.8rem;
     color: var(--black);
     transition: 0.2s;
 }
 
-nav ul li a:hover,
-nav ul li a.active {
+nav ul li a:hover{
+    scale: 105%;
+}
 
+nav ul li a.active{
     color: var(--blue);
 }
 
 nav .menu {
     display: none;
-    position: absolute;
-    right: 12px;
-    top: 12px;
-    width: 42px;
-    height: 42px;
+    width: 30px;
+    height: 30px;
+    padding: 0 48px 4px 12px;
+
 }
 
 nav .mobile {
     display: none;
 }
 
+nav .right_menu button, nav .right_menu a{
+    all:unset;
+    cursor: pointer;
+}
 
-@media (max-width: 680px) {
+nav .right_menu  img{
+    transition: 0.3s;
+}
+
+nav .right_menu  img:hover{
+    scale: 105%;
+}
+
+nav .right_menu  img:active{
+    scale: 95%;
+}
+
+
+@media (max-width: 880px) {
+    nav{
+        padding: 0.3rem;
+    }
     nav .menu {
         display: flex;
+
     }
 
     nav .icon {
@@ -82,6 +140,13 @@ nav .mobile {
         height: 100%;
     }
 
+    nav .submenu_top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 8px;
+    }
+
     nav .mobile a {
         font-size: 36px;
         text-decoration: none;
@@ -103,9 +168,18 @@ nav .mobile {
         color: var(--pink);
     }
 
-    nav ul {
-        display: none;
+    nav .right_menu {
+        width: auto;
+    }
 
+    nav .left_menu {
+        display: none;
+    }
+
+    nav .right_menu img {
+        width: 28px;
+        height: 28px;
+        padding: 0 8px;
     }
 
 }
