@@ -129,10 +129,16 @@
 .product-quantity button {
     all: unset;
     width: 32px;
+    height: 32px;
     cursor: pointer;
     transition: 0.2s;
     align-items: center;
     display: flex;
+}
+
+.product-quantity img{
+    width: 100%;
+    height: 100%;
 }
 
 .product-quantity button:hover {

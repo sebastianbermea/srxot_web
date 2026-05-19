@@ -9,7 +9,8 @@ const ProductTimer = ({ deadline }) => {
 
         if (difference > 0) {
             timeLeft = {
-                horas: Math.floor((difference / (1000 * 60 * 60))),
+                dias: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                horas: Math.floor((difference / (1000 * 60 * 60)) % 24),
                 minutos: Math.floor((difference / 1000 / 60) % 60),
                 segundos: Math.floor((difference / 1000) % 60),
             };
@@ -40,6 +41,7 @@ const ProductTimer = ({ deadline }) => {
         <div className="timer-container">
             <span className="timer-label">La oferta termina en: </span>
             <span className="timer-numbers">
+                {timeLeft.dias.toString().padStart(2, '0')}:
                 {timeLeft.horas.toString().padStart(2, '0')}:
                 {timeLeft.minutos.toString().padStart(2, '0')}:
                 {timeLeft.segundos.toString().padStart(2, '0')}

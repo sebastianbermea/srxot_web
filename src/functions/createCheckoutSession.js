@@ -56,7 +56,6 @@ async function createCheckoutSession(uid, cart) {
                 success_url: `${window.location.origin}/success`,
                 cancel_url: window.location.origin,
                 collect_shipping_address: true,
-                shipping_rates: null,
                 shipping_options: shippingOptions,
 
                 shipping_address_collection: {

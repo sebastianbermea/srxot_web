@@ -37,9 +37,11 @@ function Tienda() {
     window.scrollTo(0, 0); // Asegura que suba al inicio al cambiar página
   };
 
+  console.log(currentProducts);
+
   return (
     <div className='shop'>
-      {loading ?
+      {currentProducts.length<=0 ?
         <div className="dot-typing" style= {{paddingTop: '25px' }}>
           <div className="dot"></div>
           <div className="dot"></div>
