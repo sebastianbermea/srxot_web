@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/ListProductPopular.css';
 import { useIsMobile } from '../hooks/useIsMobile';
 
+import { trackProductClick } from '../functions/events'; 
+
 import { useCart } from '../contexts/cartContext';
 
 import rightarrow from '../assets/icons/right_arrow_pink.svg';
@@ -138,7 +140,9 @@ const ListProductPopular = () => {
                         {displayProducts.map((p, i) => (
                             <div className='popular-item' key={`${i}-${p.id}`}>
                                 <div className='popular-item-img-viewport'>
-                                    <Link to={`/producto/${p.id}`}>
+                                    <Link 
+                                    onClick={() => trackProductClick(p, p.discount?.active)}
+                                     to={`/producto/${p.id}`}>
                                         <img src={p.images[0]} alt={p.name} />
                                     </Link>
                                 </div>

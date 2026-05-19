@@ -1,6 +1,7 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
 import { MAX_TOTAL_CART } from "../Data";
 import { useProducts } from "./productContext";
+import { trackAddToCart } from '../functions/events'; 
 
 export const CartContext = createContext();
 
@@ -57,6 +58,10 @@ export const CartContextProvider = ({ children }) => {
             return;
         }
         if (product.metadata.stock == 0) return;
+
+        trackAddToCart(product, (product.discount?.active
+            ? product.discount.unit_amount
+            : product.price.unit_amount)/100, q, product.discount?.active);
 
         // 2. Cálculo de Totales Actuales
         const stockIndividual = product.metadata.stock ?? 24;

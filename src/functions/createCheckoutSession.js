@@ -2,7 +2,9 @@ import { costoEnvioGratis, MAX_TOTAL_CART } from "../Data";
 import { db } from "../firebase/credentials";
 import { collection, doc, addDoc, onSnapshot } from "firebase/firestore";
 
-async function createCheckoutSession(uid, cart) {
+import { trackStartCheckout } from '../functions/events'; 
+
+async function createCheckoutSession(uid, cart, guest = true) {
     return new Promise(async (resolve, reject) => {
         try {
 
@@ -48,6 +50,7 @@ async function createCheckoutSession(uid, cart) {
             //     ? [{ shipping_rate: 'shr_1SpZ8lH5q3LGQ4gRKbMoLlqD' }] // Solo envío gratis
             //     : [{ shipping_rate: 'shr_1SpZJlH5q3LGQ4gRumjCBUHr' }]; // Solo envío pagado
 
+            trackStartCheckout(guest, subtotal, totalUnidades);
 
             // añadimos documento para indicar a stripe inteción de compra
             const sessionData = {
@@ -57,7 +60,6 @@ async function createCheckoutSession(uid, cart) {
                 cancel_url: window.location.origin,
                 collect_shipping_address: true,
                 shipping_options: shippingOptions,
-
                 shipping_address_collection: {
                     allowed_countries: ['MX'],
                 },

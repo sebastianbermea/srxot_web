@@ -39,7 +39,7 @@ const Cart = () => {
                 return;
             }
             setLoading(true);
-            await createCheckoutSession(user.uid, cartItems);
+            await createCheckoutSession(user.uid, cartItems, false);
             setLoading(false);
         } else {
             setShowGate(true);

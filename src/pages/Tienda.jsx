@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../styles/Tienda.css';
 import { Link } from 'react-router-dom';
 import ImageFooter from '../components/ImageFooter';
+import { trackProductClick } from '../functions/events'; 
 
 import { useCart } from '../contexts/cartContext';
 import { useProducts } from "../contexts/productContext";
@@ -55,7 +56,9 @@ function Tienda() {
               {currentProducts.map((p) => (
                 <div className='shop-item' key={p.id}>
                   <div className='shop-item-img-viewport'>
-                    <Link to={`/producto/${p.id}`}>
+                    <Link 
+                      onClick={() => trackProductClick(p, p.discount?.active)}
+                    to={`/producto/${p.id}`}>
                       <img src={p.images[0]} alt={p.name} />
                     </Link>
                   </div>

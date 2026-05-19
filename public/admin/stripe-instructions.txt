@@ -65,3 +65,20 @@
     Actualizar webhook secret en firebase
     Quitar productos de prueba
     Actualizar Ids de envio
+
+*** FUNCTIONS ***
+    
+    createCheckoutSession
+        collect_shipping_address = true,
+        shipping_address_collection: { allowed_countries: ['MX'] },
+
+        modificar: shipping_rates -> shipping_options 
+
+    createCheckoutSession
+    WebEvents
+    -insertPaymentRecord
+    -insertInvoiceRecord
+        //Arriba de la funcion insertar payment  await customersSnap.docs[0].ref.collection('payments').doc(recordId)
+    await customersSnap.docs[0].ref.update({
+        lastPurchase: admin.firestore.FieldValue.serverTimestamp()
+     });
