@@ -16,7 +16,7 @@ const CheckoutGate = ({ isOpen, onClose, onContinueAsGuest, onGoToAuth, loading 
                         onClick={(e) => e.stopPropagation()}
                     >
                         <h2>Antes de finalizar...</h2>
-                        <p>Inicia sesión para tener descuentos, rastrear tu pedido y guardar tus datos para futuras compras.</p>
+                        <p>Inicia sesión para tener descuentos, ver tus pedidos, Sr Fiesta premium y guardar tus datos para futuras compras.</p>
 
                         <div className="auth-actions">
                             <button className="btn-primary" onClick={onGoToAuth}>
