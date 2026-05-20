@@ -23,6 +23,7 @@ export const trackProductClick = (product, isDiscounted = false) => {
  * @param {Int} isDiscounted - Si el producto esta descontado
 */
 export const trackAddToCart = (product, price, quantity = 1, isDiscounted = false) => {
+    if (!analytics) return;
     logEvent(analytics, 'add_to_cart', {
         item_id: product.id,
         item_name: product.name,
@@ -33,6 +34,7 @@ export const trackAddToCart = (product, price, quantity = 1, isDiscounted = fals
 };
 
 export const trackStartCheckout = (guest, totalPrice, totalItems) => {
+    if (!analytics) return;
     logEvent(analytics, 'checkout', {
         guest: guest,
         total_price: totalPrice,
