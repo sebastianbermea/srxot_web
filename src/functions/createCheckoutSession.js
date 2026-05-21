@@ -63,6 +63,10 @@ async function createCheckoutSession(uid, cart, guest = true) {
                 shipping_address_collection: {
                     allowed_countries: ['MX'],
                 },
+                phone_number_collection: {
+                    enabled: true,
+                },
+        
 
                 metadata: {
                     tallas_detalle: resumenTallas || "Sin tallas",

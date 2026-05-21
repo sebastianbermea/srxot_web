@@ -13,6 +13,7 @@ import { useCart } from '../contexts/cartContext';
 import googleIcon from '../assets/icons/google-pink.svg';
 import showIcon from '../assets/icons/show_pink.svg';
 import hideIcon from '../assets/icons/hide_pink.svg';
+import TrackingStatus from '../components/TrackingStatus';
 
 function Account() {
     const { user } = useUser();
@@ -134,6 +135,7 @@ function Account() {
                                 <div className="payment-container"
                                     key={"payment: " + k}
                                 >
+                                  
                                     <h4>{new Date(payment.created * 1000).toLocaleDateString('es-MX', {
                                         day: '2-digit',
                                         month: 'long',
@@ -144,6 +146,7 @@ function Account() {
                                             const productItem = products.find(p => p.id === item.price.product);
                                             return (
                                                 <div key={i + "-" + item.id} className="payment-item">
+                                                    
                                                     <div className='payment-item-front'>
 
                                                         <img
@@ -158,6 +161,7 @@ function Account() {
                                             );
                                         })}
                                     </div>
+                                    <TrackingStatus trackingNumber={payment.trackingNumber}/>
                                 </div>
                             ))}
                         <button

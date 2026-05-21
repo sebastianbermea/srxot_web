@@ -6,7 +6,8 @@
  - Descripcion
  - Imagen principal
  - Precio: Puntual
-
+ - Agregar producto:
+    Agregar a functions a "IMAGENES_PRODUCTOS" el id
     * METADATOS *
     - size: 
         Texto de tamaño
@@ -43,7 +44,7 @@
         [number] ej "1776232799"
         Timestamp en segundos para cuando se termina el descuento.
 
-    
+
 
 *** CUPONES ***
 
@@ -82,3 +83,8 @@
     await customersSnap.docs[0].ref.update({
         lastPurchase: admin.firestore.FieldValue.serverTimestamp()
      });
+
+    // Agregar correo para envios de mail automaticos
+     if (checkoutSession.customer_details) {
+      payment['receipt_email'] = payment.receipt_email || checkoutSession.customer_details.email || '';
+    }

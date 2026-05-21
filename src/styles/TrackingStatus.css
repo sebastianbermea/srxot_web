@@ -1,0 +1,39 @@
+.tracking-section {
+    width: 92%;
+    align-self: center;
+    max-width: 500px;
+    justify-self: center;
+    padding: 12px;
+    background-color: #00000008;
+    border-radius: 12px;
+    margin-top: 12px;
+}
+
+.tracking-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tracking-bar{
+    margin: 10px 0 10px 0;
+}
+
+.tracking-bar-items{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 86%;
+    justify-self: center;
+}
+.tracking-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tracking-section a{
+    all:unset;
+    cursor: pointer;
+    justify-self: center;
+    color: var(--pink);
+}

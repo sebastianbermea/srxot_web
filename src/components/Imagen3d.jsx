@@ -11,7 +11,7 @@ import img3 from '../assets/images/BotellaStickers.png';
 const Imagen3D = () => {
     const { scrollY } = useScroll();
     const isMobile = useIsMobile();
-    const yRaw = useTransform(scrollY, [800, 0], [0, isMobile?100:300]);
+    const yRaw = useTransform(scrollY, [800, 0], [0, isMobile?50:0]);
     const yValue = useSpring(yRaw, { stiffness: 100, damping: 30 }); // Añade suavidad
 
     return (
