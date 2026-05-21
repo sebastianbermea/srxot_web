@@ -1,4 +1,9 @@
+*** PAGINA ***
 
+    //Deploy
+    rm -rf build dist
+    npm run build
+    firebase deploy --only hosting   
 
 *** PRODUCTOS ***
 
@@ -58,6 +63,8 @@
 *** ENVIOS ***
 
     Se tendran dos ids de tarifas de envio la normal y la gratis dependiendo de el costo establecido,
+    // Añadir a payments trackingNumber
+    trackingNumber
 
 
 *** ENTORNO DE PRUEBAS ***
@@ -88,3 +95,8 @@
      if (checkoutSession.customer_details) {
       payment['receipt_email'] = payment.receipt_email || checkoutSession.customer_details.email || '';
     }
+    // agregar tracking_number para Admin panel
+    payment['tracking_number'] = null;
+
+    // Deploy
+    firebase deploy --only functions:sendMailSuccess  

@@ -5,7 +5,7 @@ const TrackingStatus = ({ trackingNumber }) => {
     const [loading, setLoading] = useState(true);
     const [tracking, setTracking] = useState(null);
 
-    const steps = ["Creado", "Recolectado", "En tránsito", "En reparto", "Entregado"];
+    const steps = ["Creado", "Enviado", "En tránsito", "En reparto", "Entregado"];
 
     useEffect(() => {
         // 💡 SI NO HAY GUÍA AÚN: Definimos el estado por defecto como "Creado" en el paso 0 de inmediato

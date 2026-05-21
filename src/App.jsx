@@ -14,6 +14,7 @@ import Terminos from './pages/Terminos';
 import Aviso from './pages/Aviso';
 import ScrollToTop from './components/ScrollToTop';
 import Cart from './components/Cart';
+import AdminDashboard from './admin/AdminDashboard';
 
 import { auth } from "./firebase/credentials";
 import { useUser } from "./contexts/userContext";
@@ -46,6 +47,7 @@ function App() {
           <Route path='/success' exact Component={Success}/>
           <Route path='/terminos' exact Component={Terminos}/>
           <Route path='/aviso' exact Component={Aviso}/>
+          <Route path='/admin-panel' exact Component={AdminDashboard}/>
         </Routes>
         <Footer/>
       </Router>

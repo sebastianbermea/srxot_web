@@ -161,7 +161,7 @@ function Account() {
                                             );
                                         })}
                                     </div>
-                                    <TrackingStatus trackingNumber={payment.trackingNumber}/>
+                                    <TrackingStatus trackingNumber={payment.tracking_number}/>
                                 </div>
                             ))}
                         <button
