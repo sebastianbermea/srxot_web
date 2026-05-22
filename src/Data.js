@@ -1,4 +1,4 @@
-import img4 from './assets/images/Gente.jpg';
+import img4 from './assets/images/banners/BottomBanner2.jpg';
 
 import icon1 from './assets/icons/party_icon.svg';
 import icon2 from './assets/icons/reunion_icon.svg';
