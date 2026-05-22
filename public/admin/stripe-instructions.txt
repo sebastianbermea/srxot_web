@@ -1,5 +1,10 @@
 *** PAGINA ***
 
+    //Test
+    npm run dev 
+    //Emulador  
+    open -a Simulator   
+
     //Deploy
     rm -rf build dist
     npm run build
@@ -83,7 +88,7 @@
         modificar: shipping_rates -> shipping_options 
 
     createCheckoutSession
-    WebEvents
+    WebHookEvents
     -insertPaymentRecord
     -insertInvoiceRecord
         //Arriba de la funcion insertar payment  await customersSnap.docs[0].ref.collection('payments').doc(recordId)
@@ -93,10 +98,22 @@
 
     // Agregar correo para envios de mail automaticos
      if (checkoutSession.customer_details) {
-      payment['receipt_email'] = payment.receipt_email || checkoutSession.customer_details.email || '';
+      payment['customer_email'] = payment.receipt_email || checkoutSession.customer_details.email || '';
+      payment['customer_phone'] = checkoutSession.customer_details.phone || null;
     }
     // agregar tracking_number para Admin panel
     payment['tracking_number'] = null;
 
     // Deploy
     firebase deploy --only functions:sendMailSuccess  
+
+    //Log
+    firebase functions:log 
+
+
+*** SR FIESTA ***
+    
+    //deploy
+    rm -rf build dist
+    npm run build
+    firebase deploy --only hosting:srfiesta 

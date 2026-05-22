@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/Nosotros.css';
-import img from '../assets/images/banners/BottomBanner5.png';
+import img from '../assets/images/banners/BottomBanner5.jpg';
 import ImageFooter from '../components/ImageFooter';
 
 function Nosotros() {

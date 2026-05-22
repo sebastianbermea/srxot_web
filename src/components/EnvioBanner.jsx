@@ -1,33 +1,37 @@
 import React from 'react';
-import '../styles/EnvioBanner.css'; // Optional: for styling
+import '../styles/EnvioBanner.css';
 import shot from '../assets/icons/shot.svg';
 import { costoEnvioGratis } from '../Data';
 
 const EnvioBanner = () => {
-
-    const renderBloques = () => {
-        let bloques = [];
-        for (let i = 0; i < 5; i++) {
-            bloques.push(<div className='banner_item' key={"Banner: " + i}>
-                <h2>ENVIO GRATIS EN LA COMPRA DE ${costoEnvioGratis.toLocaleString()} MXN</h2>
-                <img src={shot}></img>
-            </div>);
-            
-        }
-        return bloques;
-    };
+    // Creamos un array simple de 5 elementos para iterar de forma limpia en React
+    const items = Array(5).fill(null);
 
     return (
         <div className='banner'>
             <div className='banner_tracker'>
+
+                {/* 🚀 GRUPO 1: Una sola caja hermética */}
                 <div className='banner-group'>
-                    {renderBloques()}
+                    {items.map((_, i) => (
+                        <div className='banner_item' key={`group-1-${i}`}>
+                            <h2>ENVIO GRATIS EN LA COMPRA DE ${costoEnvioGratis.toLocaleString()} MXN</h2>
+                            <img src={shot} alt="shot" />
+                        </div>
+                    ))}
                 </div>
+
+                {/* 🚀 GRUPO 2: El clon exacto para el bucle infinito */}
                 <div className='banner-group'>
-                    {renderBloques()}
+                    {items.map((_, i) => (
+                        <div className='banner_item' key={`group-2-${i}`}>
+                            <h2>ENVIO GRATIS EN LA COMPRA DE ${costoEnvioGratis.toLocaleString()} MXN</h2>
+                            <img src={shot} alt="shot" />
+                        </div>
+                    ))}
                 </div>
+
             </div>
-        
         </div>
     );
 };

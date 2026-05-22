@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/ListProductPopular.css';
 import { useIsMobile } from '../hooks/useIsMobile';
 
-import { trackProductClick } from '../functions/events'; 
-
+import { trackProductClick } from '../functions/events';
 import { useCart } from '../contexts/cartContext';
 
 import rightarrow from '../assets/icons/right_arrow_pink.svg';
@@ -14,14 +13,11 @@ import lefttarrow from '../assets/icons/left_arrow_pink.svg';
 import { Link } from 'react-router-dom';
 import { useProducts } from "../contexts/productContext";
 
-
 const ListProductPopular = () => {
     const { products } = useProducts();
     const { addToCart } = useCart();
 
-    // 1. Filtramos y creamos el array para el infinito
     const originalItems = products.filter(p => p.metadata?.popular === "true");
-    // Duplicamos los items para que el salto al final sea invisible
     const displayProducts = [...originalItems, ...originalItems];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,15 +26,16 @@ const ListProductPopular = () => {
     const [startX, setStartX] = useState(0);
     const [dragOffset, setDragOffset] = useState(0);
 
-    // 2. Auto-play
+    // 🚀 NUEVOS REFS: Para detectar la dirección del dedo y bloquear el scroll de Safari
+    const startYRef = useRef(0);
+    const isHorizontalSwipeRef = useRef(null);
+
     const autoPlayRef = useRef(null);
-    
-    // Función para limpiar el intervalo
+
     const stopAutoPlay = () => {
         if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     };
 
-    // Función para iniciar/reiniciar el intervalo
     const startAutoPlay = () => {
         stopAutoPlay();
         autoPlayRef.current = setInterval(() => {
@@ -55,8 +52,7 @@ const ListProductPopular = () => {
         }
         return () => stopAutoPlay();
     }, [isDragging, currentIndex]);
-    
-    // 3. Salto invisible al terminar la transición
+
     const handleTransitionEnd = () => {
         if (currentIndex >= originalItems.length) {
             setIsTransitioning(false);
@@ -64,7 +60,7 @@ const ListProductPopular = () => {
         } else if (currentIndex < 0) {
             setIsTransitioning(false);
             setCurrentIndex(originalItems.length - 1);
-        }else{
+        } else {
             setIsTransitioning(false);
         }
     };
@@ -83,16 +79,39 @@ const ListProductPopular = () => {
         setCurrentIndex(prev => prev - 1);
     };
 
-    // 4. Handlers de Arrastre (Drag)
-    const onStart = (x) => {
+    // 🚀 HANDLERS MEJORADOS PARA EVITAR EL "CLUMSY" Y EL MOVE DIAGONAL
+    const onStart = (x, y = 0) => {
         setIsDragging(true);
         setStartX(x);
+        startYRef.current = y;
+        isHorizontalSwipeRef.current = null; // Reseteamos la dirección del scroll
         setDragOffset(0);
     };
 
-    const onMove = (x) => {
+    const onMove = (x, y = 0, isTouch = false) => {
         if (!isDragging) return;
-        setDragOffset(x - startX);
+
+        const deltaX = x - startX;
+        const deltaY = y - startYRef.current;
+
+        // Si es touch, detectamos si el usuario va hacia los lados o hacia abajo
+        if (isTouch && isHorizontalSwipeRef.current === null) {
+            // Si el movimiento en X es mayor que en Y, el usuario quiere ver más productos
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                isHorizontalSwipeRef.current = true;
+            } else if (Math.abs(deltaY) > Math.abs(deltaX)) {
+                isHorizontalSwipeRef.current = false;
+            }
+        }
+
+        // Si determinamos que el usuario va hacia abajo, cancelamos el arrastre del carrusel
+        if (isTouch && isHorizontalSwipeRef.current === false) {
+            setIsDragging(false);
+            setDragOffset(0);
+            return;
+        }
+
+        setDragOffset(deltaX);
     };
 
     const onEnd = () => {
@@ -102,10 +121,10 @@ const ListProductPopular = () => {
         else if (dragOffset > threshold) prevProduct();
         setIsDragging(false);
         setDragOffset(0);
+        isHorizontalSwipeRef.current = null;
     };
 
-    // 5. Cálculo de posición
-    const translateX = `calc(${-currentIndex *100/ displayProducts.length}% + ${dragOffset}px)`;
+    const translateX = `calc(${-currentIndex * 100 / displayProducts.length}% + ${dragOffset}px)`;
 
     if (originalItems.length === 0) return null;
 
@@ -124,15 +143,15 @@ const ListProductPopular = () => {
                     onMouseMove={(e) => onMove(e.clientX)}
                     onMouseUp={onEnd}
                     onMouseLeave={onEnd}
-                    onTouchStart={(e) => onStart(e.touches[0].clientX)}
-                    onTouchMove={(e) => onMove(e.touches[0].clientX)}
+                    onTouchStart={(e) => onStart(e.touches[0].clientX, e.touches[0].clientY)}
+                    onTouchMove={(e) => onMove(e.touches[0].clientX, e.touches[0].clientY, true)}
                     onTouchEnd={onEnd}
                 >
                     <div
                         className='popular-list'
                         onTransitionEnd={handleTransitionEnd}
                         style={{
-                            transform: `translateX(${translateX})`,
+                            transform: `translate3d(${translateX}, 0, 0)`, // 🚀 Cambiado a translate3d para fluidez GPU
                             transition: (isTransitioning && !isDragging) ? 'transform 0.5s ease-in-out' : 'none',
                             cursor: isDragging ? 'grabbing' : 'grab'
                         }}
@@ -140,14 +159,15 @@ const ListProductPopular = () => {
                         {displayProducts.map((p, i) => (
                             <div className='popular-item' key={`${i}-${p.id}`}>
                                 <div className='popular-item-img-viewport'>
-                                    <Link 
-                                    onClick={() => trackProductClick(p, p.discount?.active)}
-                                     to={`/producto/${p.id}`}>
-                                        <img src={p.images[0]} alt={p.name} />
+                                    <Link
+                                        onClick={() => trackProductClick(p, p.discount?.active)}
+                                        to={`/producto/${p.id}`}
+                                    >
+                                        <img src={p.images[0]} alt={p.name} decoding="sync" />
                                     </Link>
                                 </div>
                                 {p.metadata?.best && <img className='best-icon' src={best_icon} alt="Best Seller" />}
-                                {p.metadata?.stock && p.metadata?.stock >0 && p.metadata?.stock <20 && <img className='casi-agotado' src={stock_icon} alt="Casi Agotado" />}
+                                {p.metadata?.stock && p.metadata?.stock > 0 && p.metadata?.stock < 20 && <img className='casi-agotado' src={stock_icon} alt="Casi Agotado" />}
                                 <h3>{p.name}</h3>
                                 <div className='price-wrapper'>
                                     <h4 className={p.discount ? 'price-discount' : ''}>

@@ -7,7 +7,7 @@ import Imagen3D from '../components/Imagen3d';
 import Instagram from '../components/Instagram';
 import ImageFooter from '../components/ImageFooter';
 
-import img from '../assets/images/banners/BottomBanner.png';
+import img from '../assets/images/banners/BottomBanner.jpg';
 
 function Inicio() {
   return (

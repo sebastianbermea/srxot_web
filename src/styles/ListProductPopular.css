@@ -29,12 +29,15 @@
     display: flex;
     width: max-content;
     will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .popular-list-viewport {
     overflow: hidden;
     width: 100%;
     container-type: inline-size;
+    touch-action: pan-y;
 }
 
 .popular-item {
@@ -48,6 +51,11 @@
 
     width: 25cqw;
     min-width: 25cqw;
+}
+
+.popular-item img {
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 .popular-item .best-icon {
@@ -70,10 +78,6 @@
     -webkit-user-drag: none;
 }
 
-.popular-item-img-viewport img:hover {
-    cursor: pointer;
-    scale: 115%;
-}
 
 .popular-item h3 {
     font-size: 22px;
@@ -117,10 +121,6 @@
     transition: 0.3s;
 }
 
-.popular-item-button:hover {
-    scale: 105%;
-    cursor: pointer;
-}
 
 .out-stock-button {
     background-color: var(--gray);
@@ -159,5 +159,17 @@
     .popular-item {
         width: 40cqw;
         min-width: 40cqw;
+    }
+}
+
+@media (hover: hover) {
+    .popular-item-img-viewport img:hover {
+        cursor: pointer;
+        transform: scale(1.15);
+    }
+
+    .popular-item-button:hover {
+        transform: scale(1.05);
+        cursor: pointer;
     }
 }

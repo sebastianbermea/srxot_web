@@ -13,7 +13,7 @@ import best_icon from '../assets/icons/Best-seller.svg';
 import stock_icon from '../assets/icons/casi-agotado.svg';
 import ProductTimer from '../components/ProductTimer';
 
-import img from '../assets/images/banners/BottomBanner3.png';
+import img from '../assets/images/banners/BottomBanner3.jpg';
 
 function Producto() {
     const { id } = useParams();

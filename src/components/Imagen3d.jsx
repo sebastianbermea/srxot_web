@@ -3,15 +3,15 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 import '../styles/Imagen3d.css'; 
-import img1 from '../assets/images/MangoFresa.png';
-import img2 from '../assets/images/Cantarito.png';
+import img1 from '../assets/images/MangoFresa.jpg';
+import img2 from '../assets/images/Cantarito.jpg';
 import img3 from '../assets/images/BotellaStickers.png';
 
 
 const Imagen3D = () => {
     const { scrollY } = useScroll();
     const isMobile = useIsMobile();
-    const yRaw = useTransform(scrollY, [800, 0], [0, isMobile?50:0]);
+    const yRaw = useTransform(scrollY, [800, 0], [0, isMobile?50:250]);
     const yValue = useSpring(yRaw, { stiffness: 100, damping: 30 }); // Añade suavidad
 
     return (

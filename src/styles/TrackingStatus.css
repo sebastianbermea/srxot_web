@@ -37,3 +37,10 @@
     justify-self: center;
     color: var(--pink);
 }
+
+.tracking-delivery{
+    text-align: end;
+    width: 100%;
+    font-style: italic;
+    color: var(--gray);
+}

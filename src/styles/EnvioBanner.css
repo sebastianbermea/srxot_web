@@ -3,29 +3,42 @@
     height: 50px;
     background-color: var(--pink);
     display: flex;
+    width: 100vw;
 }
 
 .banner_tracker {
     display: flex;
     width: max-content;
-    animation: anim 25s linear infinite;
+    animation: animBanner 25s linear infinite;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .banner h2 {
     color: white;
     font-size: 20px;
-    width: 280px;
+    margin: 0;
+    width: max-content;
     white-space: nowrap;
+    padding-top: 6px;
 }
 
 .banner-group {
     display: flex;
     flex-shrink: 0;
+    align-items: center;
 }
 
 .banner_item {
     display: flex;
-    padding-right: 18px;
+    align-items: center;
+    /* 🚀 Alinea el texto y el icono perfectamente al centro */
+    gap: 15px;
+    /* 🚀 Crea una separación fija y segura entre texto e icono */
+    padding-right: 15px;
+    /* 🚀 Espaciado al final de cada bloque antes del que sigue */
+    flex-shrink: 0;
 }
 
 .banner_item img {
@@ -33,13 +46,14 @@
     padding-left: 2px;
 }
 
-@keyframes anim {
-
+@keyframes animBanner {
     0% {
-        transform: translateX(-50%);
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
     }
 
     100% {
-        transform: translateX(0);
+        transform: translate3d(-50%, 0, 0);
+        -webkit-transform: translate3d(-50%, 0, 0);
     }
 }

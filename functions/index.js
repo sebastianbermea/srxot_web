@@ -8,7 +8,7 @@ const { onDocumentUpdated } = require("firebase-functions/v2/firestore");
 const admin = require("firebase-admin");
 const { Resend } = require("resend");
 
-const cors = require("cors")({ origin: true }); // Permite peticiones de cualquier origen
+const cors = require("cors")({ origin: 'https://srxot.com' }); // Permite peticiones de cualquier origen
 
 if (admin.apps.length === 0) {
     admin.initializeApp();
@@ -19,73 +19,77 @@ exports.sendMailSuccess = onDocumentUpdated(
         secrets: ["RESEND_API_KEY"]
     }
     , async (event) => {
-    const newValue = event.data.after.data();
-    const oldValue = event.data.before.data();
+        logger.info("============== TRIGGER ACTIVADO (onDocumentUpdated) ==============");
 
-    const IMAGENES_PRODUCTOS = {
-        "prod_TkzUoKBclAB7Ju": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfeEJGVXhSeDBCeFB2R3dBNTh1aTMxYWUy00dkx243yi",
-        "prod_Tl07wQD22TP4xp": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfMnh4TEZBbk00dFdhM1BZejlaUUNlanlS00sLC4ReCs",
-        "prod_Tl084N7kpNl0JO": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfQTNjVFBVR3dqa0tXeXZHODFEdE1tQnpG00QKOf3QDV",
-        "prod_Tl0AMDFO6IBANs": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfa285SFkxNHFDWHFWUG5nbERpeUpXajN600kyBShB72",
-        "prod_Tl0C3YvZpjOQ2b": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfcmFPdG5Md2lQOHB6ZWdLdWRlaThxSjha00s7esWzpb",
-        "prod_UW86SBXBKYwZd1": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfNTVIOWNpWXBCYk1xTXFLNUFvSmlDUmpS000XEqkI0a",
-        "prod_UW897jSZIUtl95": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfOFJkMnN0a0pKSk5rbGRadDRsS3BjYmth001Ylj8ZZ9",
-        "prod_UW8CoLFlsvqRxt": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfb1kweExhV21CVFFHMFFOcFExVFJCNGRr00LsjOA8d0",
-        "prod_UW8GQjojlaJGPB": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfWXo1eFRDYngxVG9zTmViaGJkUFU3MlQ000frtmHPRn",
-        "prod_UW8QkVRuOU8Xb9": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfa0JhaXVFRW1tR1F0TWZTNlNGY1IxeTN100hc7KmpfK"
-    };
+        const newValue = event.data.after.data();
+        const oldValue = event.data.before.data();
 
+        const esExitoso = newValue.status === "succeeded";
+        
+        const correoRecienAgregado = !oldValue.customer_email && newValue.customer_email;
 
-    // Monitoreamos que el estatus cambie a exitoso (succeeded)
-    if (newValue.status === "succeeded" && oldValue.status !== "succeeded") {
-        const resend = new Resend(process.env.RESEND_API_KEY);
+        const IMAGENES_PRODUCTOS = {
+            "prod_TkzUoKBclAB7Ju": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfeEJGVXhSeDBCeFB2R3dBNTh1aTMxYWUy00dkx243yi",
+            "prod_Tl07wQD22TP4xp": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfMnh4TEZBbk00dFdhM1BZejlaUUNlanlS00sLC4ReCs",
+            "prod_Tl084N7kpNl0JO": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfQTNjVFBVR3dqa0tXeXZHODFEdE1tQnpG00QKOf3QDV",
+            "prod_Tl0AMDFO6IBANs": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfa285SFkxNHFDWHFWUG5nbERpeUpXajN600kyBShB72",
+            "prod_Tl0C3YvZpjOQ2b": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfcmFPdG5Md2lQOHB6ZWdLdWRlaThxSjha00s7esWzpb",
+            "prod_UW86SBXBKYwZd1": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfNTVIOWNpWXBCYk1xTXFLNUFvSmlDUmpS000XEqkI0a",
+            "prod_UW897jSZIUtl95": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfOFJkMnN0a0pKSk5rbGRadDRsS3BjYmth001Ylj8ZZ9",
+            "prod_UW8CoLFlsvqRxt": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfb1kweExhV21CVFFHMFFOcFExVFJCNGRr00LsjOA8d0",
+            "prod_UW8GQjojlaJGPB": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfWXo1eFRDYngxVG9zTmViaGJkUFU3MlQ000frtmHPRn",
+            "prod_UW8QkVRuOU8Xb9": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfa0JhaXVFRW1tR1F0TWZTNlNGY1IxeTN100hc7KmpfK"
+        };
 
-        const uid = event.params.uid;
-        let customerEmail = newValue.receipt_email;
-        let botonReciboUrl = "https://srxot.com/account";
+        if (esExitoso && correoRecienAgregado) {
+            const resend = new Resend(process.env.RESEND_API_KEY);
 
-        const customerName = newValue.shipping?.name || "Cliente";
+            const uid = event.params.uid;
+            let customerEmail = newValue.customer_email;
+            let botonReciboUrl = "https://srxot.com/account";
 
-        const granTotal = newValue.amount_received ? newValue.amount_received / 100 : 0;
-        const costoEnvio = newValue.amount_details?.shipping?.amount ? newValue.amount_details.shipping.amount / 100 : 0;
-        const subtotalProductos = granTotal - costoEnvio;
+            const customerName = newValue.shipping?.name || "";
 
+            const granTotal = newValue.amount_received ? newValue.amount_received / 100 : 0;
+            const costoEnvio = newValue.amount_details?.shipping?.amount ? newValue.amount_details.shipping.amount / 100 : 0;
+            const subtotalProductos = granTotal - costoEnvio;
+            const pid = event.params.paymentId.slice(3);
 
-        if (!customerEmail) {
-            console.log("Cancelando envío: No se encontró dirección de correo electrónico.");
-            return null;
-        }
-
-        const shippingData = newValue.shipping || {};
-        const direccionName = shippingData.name || customerName;
-        const direccionPhone = shippingData.phone || "No proporcionado";
-        const address = shippingData.address || {};
-
-        const calle1 = address.line1 || "";
-        const calle2 = address.line2 ? `, ${address.line2}` : "";
-        const ciudad = address.city || "";
-        const estado = address.state || "";
-        const cp = address.postal_code || "";
-        const pais = address.country === "MX" ? "México" : (address.country || "");
-
-        const listaProductos = newValue.items || [];
-        let filasProductosHtml = "";
-
-        listaProductos.forEach((item) => {
-            const nombreProducto = item.description || "Producto Sr. Xot";
-            const cantidad = item.quantity || 1;
-            const totalItem = item.amount_total ? item.amount_total / 100 : 0;
-
-            const stripeProductId = item.price?.product;
-
-            // 🖼️ URL de imagen por defecto o placeholder.
-            let imagenUrl = "https://firebasestorage.googleapis.com/v0/b/srxot-web.firebasestorage.app/o/srxotlogo.png?alt=media&token=3c6de493-2673-46e3-8a58-4be1b30a753f";
-            
-            if (stripeProductId && IMAGENES_PRODUCTOS[stripeProductId]) {
-                imagenUrl = IMAGENES_PRODUCTOS[stripeProductId];
+            if (!customerEmail) {
+                logger.info("Cancelando envío: No se encontró dirección de correo electrónico.");
+                return null;
             }
 
-            filasProductosHtml += `
+            const shippingData = newValue.shipping || {};
+            const direccionName = shippingData.name || customerName;
+            const direccionPhone = newValue.customer_phone || "No proporcionado";
+            const address = shippingData.address || {};
+
+            const calle1 = address.line1 || "";
+            const calle2 = address.line2 ? `, ${address.line2}` : "";
+            const ciudad = address.city || "";
+            const estado = address.state || "";
+            const cp = address.postal_code || "";
+            const pais = address.country === "MX" ? "México" : (address.country || "");
+
+            const listaProductos = newValue.items || [];
+            let filasProductosHtml = "";
+
+            listaProductos.forEach((item) => {
+                const nombreProducto = item.description || "Producto Sr. Xot";
+                const cantidad = item.quantity || 1;
+                const totalItem = item.amount_total ? item.amount_total / 100 : 0;
+
+                const stripeProductId = item.price?.product;
+
+                // 🖼️ URL de imagen por defecto o placeholder.
+                let imagenUrl = "https://firebasestorage.googleapis.com/v0/b/srxot-web.firebasestorage.app/o/srxotlogo.png?alt=media&token=3c6de493-2673-46e3-8a58-4be1b30a753f";
+
+                if (stripeProductId && IMAGENES_PRODUCTOS[stripeProductId]) {
+                    imagenUrl = IMAGENES_PRODUCTOS[stripeProductId];
+                }
+
+                filasProductosHtml += `
                 <tr style="border-bottom: 1px solid #e0e0e0;">
                 <td style="padding: 15px 0; width: 70px;">
                     <img src="${imagenUrl}" alt="${nombreProducto}" width="60" style="display: block; border-radius: 4px; border: 1px solid #eee;">
@@ -99,15 +103,15 @@ exports.sendMailSuccess = onDocumentUpdated(
                 </td>
                 </tr>
             `;
-        });
+            });
 
-        try {
-            // 🚀 Mandamos el correo directo usando la API de Resend sin extensiones
-            await resend.emails.send({
-                from: "Sr. Xot <info@srxot.com>", // Aquí pones tu correo corporativo cuando lo configures en Resend
-                to: [customerEmail],
-                subject: "¡Tu orden de Sr. Xot está confirmada! 🥂",
-                html: `
+            try {
+                // 🚀 Mandamos el correo directo usando la API de Resend sin extensiones
+                await resend.emails.send({
+                    from: "Sr. Xot <info@srxot.com>", // Aquí pones tu correo corporativo cuando lo configures en Resend
+                    to: [customerEmail],
+                    subject: "¡Tu orden de Sr. Xot está confirmada! 🥂",
+                    html: `
                  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f9f9f9; padding: 20px 0; font-family: Arial, sans-serif;">
               <tr>
                   <td align="center">
@@ -128,12 +132,21 @@ exports.sendMailSuccess = onDocumentUpdated(
 
                                   <div style="text-align: center; margin: 30px 0;">
                                       <a href="${botonReciboUrl}" target="_blank" style="background-color: #111111; color: #f8efe8; padding: 14px 28px; font-weight: bold; text-decoration: none; border-radius: 6px; display: inline-block; box-shadow: 0 3px 5px rgba(0,0,0,0.1);">
-                                          Ver compra
+                                          Ver pedido
                                       </a>
                                   </div>
-
-                                  <h3 style="font-size: 18px; color: #111; border-bottom: 2px solid #111; padding-bottom: 5px; margin-top: 35px;">Resumen del Pedido</h3>
-                                  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+                                  
+                                 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 35px; border-bottom: 2px solid #111; padding-bottom: 5px;">
+                                        <tr>
+                                            <td style="text-align: left; vertical-align: baseline;">
+                                                <h3 style="font-size: 16px; color: #111; margin: 0;">Resumen</h3>
+                                            </td>
+                                            <td style="text-align: right; vertical-align: baseline;">
+                                                <h4 style="font-size: 12px; color: #9d9cad; margin: 0; font-weight: normal;">ID: ${pid}</h4>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
                                       ${filasProductosHtml}
                                   </table>
 
@@ -165,7 +178,7 @@ exports.sendMailSuccess = onDocumentUpdated(
 
                                   <p style="font-size: 12px; color: #555555; margin-top: 15px;">
                                       Recuerda que una vez se haya preparado tu pedido suele tardar entre 3 y 10 días hábiles en llegar a tu dirección.
-                                      Si tienes cualquier duda, no dudes en contactarnos en <strong>info@srxot.com</strong>.
+                                      Si tienes cualquier duda, no dudes en contactarnos en <strong><a href="https://srxot.com/contacto" target="_blank" style= "color: #e6007e;">Sr Xot</a></strong>.
                                   </p>
                               </td>
                           </tr>
@@ -183,16 +196,16 @@ exports.sendMailSuccess = onDocumentUpdated(
               </tr>
           </table>
                 `
-            });
+                });
 
-            console.log(`Correo enviado de forma directa mediante Resend a: ${customerEmail}`);
-        } catch (error) {
-            console.error("Error directo al enviar con Resend:", error);
+                console.log(`Correo enviado de forma directa mediante Resend a: ${customerEmail}`);
+            } catch (error) {
+                console.error("Error directo al enviar con Resend:", error);
+            }
         }
-    }
 
-    return null;
-});
+        return null;
+    });
 
 exports.getTrackingStatus = onRequest({
     secrets: ["ENVIA_TOKEN"]
@@ -211,7 +224,8 @@ exports.getTrackingStatus = onRequest({
                 trackUrl: null,
                 statusEspañol: "Creado",
                 currentStep: 0,
-                isErrorStatus: false
+                isErrorStatus: false,
+                estimatedDelivery: null
             });
         }
 
@@ -272,7 +286,8 @@ exports.getTrackingStatus = onRequest({
                     trackUrl: trackingData.trackUrl || `https://envia.com/rastreo?label=${trackingData.trackingNumber}`,
                     statusEspañol: mapped.text,
                     currentStep: mapped.step,
-                    isErrorStatus: mapped.isError
+                    isErrorStatus: mapped.isError,
+                    estimatedDelivery: trackingData.estimatedDelivery
                 });
             } else {
                 return res.status(404).json({ error: "Guía no encontrada en el sistema" });

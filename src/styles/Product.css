@@ -46,10 +46,6 @@
     will-change: transform, transform-origin;
 }
 
-.product-main-image:hover {
-    transform: scale(1.5);
-    object-fit: contain;
-}
 
 .product-main-description h2 {
     font-size: 2.8rem;
@@ -141,9 +137,6 @@
     height: 100%;
 }
 
-.product-quantity button:hover {
-    scale: 105%;
-}
 
 .product-quantity input {
     font-size: 26px;
@@ -184,10 +177,6 @@
     transition: 0.3s;
 }
 
-.product-main-add:hover {
-    scale: 105%;
-}
-
 .product-main-add:active {
     scale: 95%;
 }
@@ -220,8 +209,24 @@
     transition: 0.3s;
 }
 
-.product-main-image-selct:hover{
-    scale:105%;
+@media (hover: hover) {
+    .product-main-image:hover {
+        transform: scale(1.5);
+        object-fit: contain;
+    }
+
+    .product-quantity button:hover {
+        transform: scale(1.05);
+        /* Cambiado a transform para mantener consistencia física */
+    }
+
+    .product-main-add:hover {
+        transform: scale(1.05);
+    }
+
+    .product-main-image-selct:hover {
+        transform: scale(1.05);
+    }
 }
 
 @media (max-width: 680px) {

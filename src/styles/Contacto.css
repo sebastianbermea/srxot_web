@@ -106,20 +106,27 @@
         padding-top: 24px;
         flex-direction: row;
         justify-content: center;
-        gap: 12px;
+        gap: 14px;
+        align-items: center;
     }
 
     .contacto .social-media a {
-        font-size: 20px;
-        gap: 0;
+        font-size: 12px;
+        gap: 2px;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 0;
+       
+    }
+
+    .contacto .social-media h6{
+        font-size: 20px;
+        padding-bottom: 12px;
     }
 
     .contacto .social-media a img {
-        width: 30px;
+        width: 24px;
 
     }
 }

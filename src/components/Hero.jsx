@@ -8,16 +8,16 @@ import circlefull from '../assets/icons/Circle_Full.svg';
 import circleoutline from '../assets/icons/Circle_Outline.svg';
 
 
-import img1 from '../assets/images/banners/Jugar.png';
-import img2 from '../assets/images/banners/MerchBanner.png';
-import img3 from '../assets/images/banners/ComboBanner.png';
-import img4 from '../assets/images/banners/Personaliza.png';
-import img5 from '../assets/images/banners/MundialBanner.png';
-import imgM1 from '../assets/images/banners/JugarM.png';
-import imgM2 from '../assets/images/banners/MerchBannerM.png';
-import imgM3 from '../assets/images/banners/ComboBannerM.png';
-import imgM4 from '../assets/images/banners/PersonalizaM.png';
-import imgM5 from '../assets/images/banners/MundialBannerM.png';
+import img1 from '../assets/images/banners/Jugar.jpg';
+import img2 from '../assets/images/banners/MerchBanner.jpg';
+import img3 from '../assets/images/banners/ComboBanner.jpg';
+import img4 from '../assets/images/banners/Personaliza.jpg';
+import img5 from '../assets/images/banners/MundialBanner.jpg';
+import imgM1 from '../assets/images/banners/JugarM.jpg';
+import imgM2 from '../assets/images/banners/MerchBannerM.jpg';
+import imgM3 from '../assets/images/banners/ComboBannerM.jpg';
+import imgM4 from '../assets/images/banners/PersonalizaM.jpg';
+import imgM5 from '../assets/images/banners/MundialBannerM.jpg';
 
 
 

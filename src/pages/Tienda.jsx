@@ -12,7 +12,7 @@ import lefttarrow from '../assets/icons/left_arrow_pink.svg';
 import best_icon from '../assets/icons/Best-seller.svg';
 import stock_icon from '../assets/icons/casi-agotado.svg';
 
-import img from '../assets/images/banners/BottomBanner4.png';
+import img from '../assets/images/banners/BottomBanner4.jpg';
 
 function Tienda() {
  const { products } = useProducts();

@@ -8,8 +8,14 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const { user } = useUser();
 
+    
+
     // Cargar pedidos sin tracking
     useEffect(() => {
+        if(user?.email !== "admin@srxot.com") {
+            return;
+        }
+
         const fetchPendientes = async () => {
             try {
                 // 1. Usamos collectionGroup para buscar en todas las subcolecciones "payments"
@@ -36,7 +42,7 @@ export default function AdminDashboard() {
             }
         };
         fetchPendientes();
-    }, []);
+    }, [user]);
 
     // Función para marcar como enviado (usando la lógica que ya vimos)
     const marcarComoEnviado = async (pedido, paymentId, trackingNumber) => {
@@ -50,6 +56,13 @@ export default function AdminDashboard() {
         setPedidosPendientes(prev => prev.filter(p => p.id !== paymentId));
         alert("¡Pedido actualizado!");
     };
+
+    if (user?.email !== "admin@srxot.com") {
+        return (<div style={{ padding: '50px', textAlign: 'center' }}>
+            <h1>🚫 Acceso Denegado</h1>
+            <p>No tienes permiso para ver esta sección.</p>
+        </div>);
+    }
 
     if (loading) return <div className="dot-typing">
         <div className="dot"></div>

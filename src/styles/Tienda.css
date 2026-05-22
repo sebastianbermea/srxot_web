@@ -35,11 +35,6 @@
     -webkit-user-drag: none;
 }
 
-.shop-item-img-viewport img:hover {
-    cursor: pointer;
-    scale: 115%;
-}
-
 .shop-item h3 {
     font-size: 1.5rem;
     text-align: center;
@@ -98,9 +93,6 @@
     border: 3px solid var(--pink);
 }
 
-.pagination button:hover:not(:disabled) {
-    scale: 105%;
-}
 
 .pagination button:disabled {
     opacity: 0.3;
@@ -111,5 +103,17 @@
 @media (max-width: 680px) {
     .shop-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (hover: hover) {
+    .shop-item-img-viewport img:hover {
+        cursor: pointer;
+        transform: scale(1.15);
+        /* Cambiado a transform: scale para suavidad total */
+    }
+
+    .pagination button:hover:not(:disabled) {
+        transform: scale(1.05);
     }
 }

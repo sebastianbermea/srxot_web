@@ -14,7 +14,8 @@ const TrackingStatus = ({ trackingNumber }) => {
                 trackUrl: null,
                 statusEspañol: "Creado",
                 currentStep: 0,
-                isErrorStatus: false
+                isErrorStatus: false,
+                estimatedDelivery: null
             });
             setLoading(false);
             return;
@@ -57,14 +58,40 @@ const TrackingStatus = ({ trackingNumber }) => {
         <div className="dot"></div>
     </div>;
 
+    const formatearFechaEntrega = (fechaString) => {
+        if (!fechaString) return "No especificada";
+
+        // 1. Extraemos solo la fecha (ej. "2026-05-22")
+        const fechaEntrega = fechaString.split(' ')[0];
+
+        // 2. Obtenemos la fecha de hoy en formato YYYY-MM-DD (Hora de México)
+        const hoy = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Mexico_City' });
+
+        // 3. Comparamos
+        if (fechaEntrega === hoy) {
+            return "Hoy";
+        } else {
+            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(fechaEntrega + "T00:00:00").toLocaleDateString('es-MX', opciones);
+        }
+    };
+
     if (!tracking) return null;
 
     const showProgressBar = tracking.currentStep >= 0 && tracking.currentStep < 4;
 
     return (
         <div className="tracking-section">
-
+                
             {showProgressBar ? (
+                <>
+                {
+                    tracking.estimatedDelivery && (
+                        <div className='tracking-delivery'>
+                            Entrega estimada: {formatearFechaEntrega(tracking.estimatedDelivery)}
+                        </div>
+                    )
+                }
                 <div className='tracking-bar'>
                     <div className='tracking-bar-items'>
 
@@ -115,6 +142,7 @@ const TrackingStatus = ({ trackingNumber }) => {
                         ))}
                     </div>
                 </div>
+                </>
             ) : (
                 <div style={{
                     padding: '8px',
