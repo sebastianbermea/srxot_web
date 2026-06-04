@@ -10,13 +10,23 @@ const { Resend } = require("resend");
 
 const cors = require("cors")({ origin: 'https://srxot.com' }); // Permite peticiones de cualquier origen
 
+const crypto = require('crypto'); // 🚀 Al inicio de tu archivo de funciones
+const axios = require('axios');
+
+
 if (admin.apps.length === 0) {
     admin.initializeApp();
 }
+
+function hashDataMeta(data) {
+    if (!data) return null;
+    return crypto.createHash('sha256').update(data.trim().toLowerCase()).digest('hex');
+}
+
 exports.sendMailSuccess = onDocumentUpdated(
     {
         document: "customers/{uid}/payments/{paymentId}",
-        secrets: ["RESEND_API_KEY"]
+        secrets: ["RESEND_API_KEY", "META_CAPI_TOKEN"]
     }
     , async (event) => {
         logger.info("============== TRIGGER ACTIVADO (onDocumentUpdated) ==============");
@@ -27,6 +37,7 @@ exports.sendMailSuccess = onDocumentUpdated(
         const esExitoso = newValue.status === "succeeded";
         
         const correoRecienAgregado = !oldValue.customer_email && newValue.customer_email;
+        
 
         const IMAGENES_PRODUCTOS = {
             "prod_TkzUoKBclAB7Ju": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfeEJGVXhSeDBCeFB2R3dBNTh1aTMxYWUy00dkx243yi",
@@ -42,10 +53,40 @@ exports.sendMailSuccess = onDocumentUpdated(
         };
 
         if (esExitoso && correoRecienAgregado) {
+
+            //Actualizacion lastpurchase y correo
+            try {
+                const uid = event.params.uid;
+                let customerEmail = newValue.customer_email;
+                const customerPhone = newValue.customer_phone;
+
+                const clientUserAgent = newValue.metadata?.user_agent_custom || "";
+                
+                const customerRef = admin.firestore().collection("customers").doc(uid);
+                const customerSnap = await customerRef.get();
+
+                if (customerSnap.exists) {
+                    const customerData = customerSnap.data() || {};
+                    const updateData = {
+                        lastPurchase: admin.firestore.FieldValue.serverTimestamp()
+                    };
+
+                    // Si no tiene correo en su perfil principal de la app, se lo ponemos de una vez
+                    if (!customerData.email && customerEmail) {
+                        updateData.email = customerEmail;
+                    }
+
+                    await customerRef.update(updateData);
+                    logger.info(`Perfil del cliente ${uid} actualizado con éxito.`);
+                }
+            } catch (custError) {
+                logger.error("Error al actualizar los datos del cliente:", custError);
+            }
+            //---------------------------
+            
             const resend = new Resend(process.env.RESEND_API_KEY);
 
-            const uid = event.params.uid;
-            let customerEmail = newValue.customer_email;
+           
             let botonReciboUrl = "https://srxot.com/account";
 
             const customerName = newValue.shipping?.name || "";
@@ -197,6 +238,49 @@ exports.sendMailSuccess = onDocumentUpdated(
           </table>
                 `
                 });
+                // ==========================================================================
+                //  DISPARO A META CONVERSIONS API (CAPI)
+                // ==========================================================================
+                try {
+                    const PIXEL_ID = '1659296348656819';
+                    const META_TOKEN = process.env.META_CAPI_TOKEN;
+
+                    if (META_TOKEN) {
+                        const metaUrl = `https://graph.facebook.com/v19.0/${PIXEL_ID}/events`;
+
+                        const metaPayload = {
+                            data: [
+                                {
+                                    event_name: 'Purchase',
+                                    event_time: Math.floor(Date.now() / 1000),
+                                    event_id: event.params.paymentId,
+                                    action_source: 'website',
+                                    user_data: {
+                                        em: customerEmail ? [hashDataMeta(customerEmail)] : [],
+                                        ph: customerPhone ? [hashDataMeta(customerPhone)] : [],
+                                        client_ip_address: null, 
+                                        client_user_agent: clientUserAgent || null 
+                                    },
+                                    custom_data: {
+                                        currency: 'MXN',
+                                        value: granTotal,
+                                        content_type: 'product',
+                                        contents: metaContents
+                                    }
+                                }
+                            ],
+                            access_token: META_TOKEN
+                        };
+
+                        await axios.post(metaUrl, metaPayload);
+                        logger.info(`[Meta CAPI] Evento Purchase enviado con éxito. ID: ${event.params.paymentId}`);
+                    } else {
+                        logger.warn("[Meta CAPI] No se envió el evento porque META_CAPI_TOKEN no está configurado.");
+                    }
+                } catch (metaError) {
+                    logger.error("Error enviando conversión a Meta CAPI:", metaError.response?.data || metaError.message);
+                }
+                
 
                 console.log(`Correo enviado de forma directa mediante Resend a: ${customerEmail}`);
             } catch (error) {

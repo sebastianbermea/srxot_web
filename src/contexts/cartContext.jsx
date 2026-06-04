@@ -2,6 +2,7 @@ import React, { useState, useContext, createContext, useEffect } from "react";
 import { MAX_TOTAL_CART } from "../Data";
 import { useProducts } from "./productContext";
 import { trackAddToCart } from '../functions/events'; 
+import ReactPixel from 'react-facebook-pixel';
 
 export const CartContext = createContext();
 
@@ -62,6 +63,17 @@ export const CartContextProvider = ({ children }) => {
         trackAddToCart(product, (product.discount?.active
             ? product.discount.unit_amount
             : product.price.unit_amount)/100, q, product.discount?.active);
+
+        ReactPixel.track('AddToCart', {
+            content_name: product.name,
+            content_ids: [product.id],
+            content_type: 'product',
+            quantity: q,
+            value: (product.discount?.active
+                ? product.discount.unit_amount
+                : product.price.unit_amount) / 100 * (parseInt(q) || 1), // Valor total del lote añadido
+            currency: 'MXN'
+        });
 
         // 2. Cálculo de Totales Actuales
         const stockIndividual = product.metadata.stock ?? 24;

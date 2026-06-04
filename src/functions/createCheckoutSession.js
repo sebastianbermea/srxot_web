@@ -3,6 +3,7 @@ import { db } from "../firebase/credentials";
 import { collection, doc, addDoc, onSnapshot } from "firebase/firestore";
 
 import { trackStartCheckout } from '../functions/events'; 
+import ReactPixel from 'react-facebook-pixel';
 
 async function createCheckoutSession(uid, cart, guest = true) {
     return new Promise(async (resolve, reject) => {
@@ -52,6 +53,13 @@ async function createCheckoutSession(uid, cart, guest = true) {
 
             trackStartCheckout(guest, subtotal, totalUnidades);
 
+            ReactPixel.track('InitiateCheckout', {
+                value: subtotal,
+                currency: 'MXN',
+                num_items: totalUnidades,
+                content_type: 'product',
+            });
+
             // añadimos documento para indicar a stripe inteción de compra
             const sessionData = {
                 mode: "payment",
@@ -71,6 +79,7 @@ async function createCheckoutSession(uid, cart, guest = true) {
                 metadata: {
                     tallas_detalle: resumenTallas || "Sin tallas",
                     usuario_id: uid, 
+                    user_agent_custom: window.navigator.userAgent
                 },
 
                 line_items: cart.map((item) => {

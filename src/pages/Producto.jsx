@@ -15,6 +15,8 @@ import ProductTimer from '../components/ProductTimer';
 
 import img from '../assets/images/banners/BottomBanner3.jpg';
 
+import ReactPixel from 'react-facebook-pixel';
+
 function Producto() {
     const { id } = useParams();
 
@@ -48,6 +50,18 @@ function Producto() {
 
             setProductInfo({ ...product, allImages });
             setImg(product.images[0]);
+
+            const precioReal = product.discount
+                ? product.discount.unit_amount / 100
+                : product.price.unit_amount / 100;
+
+            ReactPixel.track('ViewContent', {
+                content_name: product.name,
+                content_ids: [product.id],
+                content_type: 'product',
+                value: precioReal,
+                currency: 'MXN'
+            });
         }
         getProductInfo();
     }, [id]);

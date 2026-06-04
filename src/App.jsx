@@ -1,4 +1,5 @@
 import './App.css'
+import React, { useEffect } from 'react';
 import NavBar from './components/NavBar'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Inicio from './pages/Inicio';
@@ -21,13 +22,35 @@ import { useUser } from "./contexts/userContext";
 import { onAuthStateChanged } from "firebase/auth";
 import AgeModal from './components/AgeModal';
 
+import ReactPixel from 'react-facebook-pixel';
+
 function App() {
   const { setUser } = useUser();
-  onAuthStateChanged(auth, (firebaseUser) => {
-    console.log(firebaseUser);
-    if (firebaseUser) setUser(firebaseUser);
-    if (!firebaseUser) setUser(null);
-  });
+
+  useEffect(() => {
+    // 1. 🔒 Control seguro del estado de autenticación (Una sola instancia)
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      console.log(firebaseUser);
+      if (firebaseUser) {
+        setUser(firebaseUser);
+      } else {
+        setUser(null);
+      }
+    });
+
+    // 2. ⚙️ Opciones de configuración inicial de Meta
+    const options = {
+      autoConfig: true,
+      debug: false,
+    };
+
+    // 3. 🚀 Inicializa el Píxel con tu ID Real
+    ReactPixel.init('1659296348656819', null, options);
+    ReactPixel.pageView();
+
+    // Limpieza: Cuando la app se desmonte (raro que pase), destruye el escuchador de auth
+    return () => unsubscribe();
+  }, [setUser]); // Añadimos setUser como dependencia buena práctica
 
   return (
     <div className='App'>
