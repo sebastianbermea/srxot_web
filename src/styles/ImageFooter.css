@@ -1,8 +1,11 @@
 .image-footer {
     padding-top: 80px;
-    width: 100%;
+    width: 95%;
     height: 40vw;
     position: relative;
+    align-self: center;
+    justify-self: center;
+    border-radius: 42px;
     z-index: 1;
 }
 
@@ -10,6 +13,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 42px;
 }
 
 .image-footer h2 {
@@ -29,10 +33,15 @@
 @media (max-width: 680px) {
     .image-footer {
         height: 55vw;
+        border-radius: 28px;
     }
 
     .image-footer h2 {
         top: 40%;
         font-size: 13vw;
     }
+        .image-footer img {
+         
+            border-radius: 26px;
+        }
 }

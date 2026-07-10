@@ -37,7 +37,12 @@ exports.sendMailSuccess = onDocumentUpdated(
         const esExitoso = newValue.status === "succeeded";
         
         const correoRecienAgregado = !oldValue.customer_email && newValue.customer_email;
-        
+
+        let customerEmail = newValue.customer_email || "";
+        const customerPhone = newValue.customer_phone || "";
+        const clientUserAgent = newValue.metadata?.user_agent_custom || "";
+
+        const metaContents = [];
 
         const IMAGENES_PRODUCTOS = {
             "prod_TkzUoKBclAB7Ju": "https://files.stripe.com/links/MDB8YWNjdF8xU2lpeTNIWnlmVkxqNEtOfGZsX2xpdmVfeEJGVXhSeDBCeFB2R3dBNTh1aTMxYWUy00dkx243yi",
@@ -57,11 +62,7 @@ exports.sendMailSuccess = onDocumentUpdated(
             //Actualizacion lastpurchase y correo
             try {
                 const uid = event.params.uid;
-                let customerEmail = newValue.customer_email;
-                const customerPhone = newValue.customer_phone;
-
-                const clientUserAgent = newValue.metadata?.user_agent_custom || "";
-                
+                                
                 const customerRef = admin.firestore().collection("customers").doc(uid);
                 const customerSnap = await customerRef.get();
 
@@ -122,6 +123,13 @@ exports.sendMailSuccess = onDocumentUpdated(
                 const totalItem = item.amount_total ? item.amount_total / 100 : 0;
 
                 const stripeProductId = item.price?.product;
+
+                metaContents.push({
+                    id: stripeProductId,
+                    quantity: cantidad,
+                    item_price: totalItem / cantidad,
+                    title: nombreProducto
+                });
 
                 // 🖼️ URL de imagen por defecto o placeholder.
                 let imagenUrl = "https://firebasestorage.googleapis.com/v0/b/srxot-web.firebasestorage.app/o/srxotlogo.png?alt=media&token=3c6de493-2673-46e3-8a58-4be1b30a753f";

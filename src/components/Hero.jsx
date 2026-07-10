@@ -110,7 +110,7 @@ function Hero() {
                     to={url}>
                         <picture>
                             {/* Source for desktop screens (min-width: 800px) */}
-                            <source media="(min-width: 680px)" srcSet={desktop} />
+                            <source media="(min-width: 680px)" srcSet={mobile} />
                             {/* Source for mobile screens (max-width: 799px) */}
                             <img src={mobile} alt={alt} key={desktop} />
                         </picture>

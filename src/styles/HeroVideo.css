@@ -1,0 +1,264 @@
+.hero-video-divider{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.hero-video-container {
+    position: relative;
+    width: 95%;
+    height: 720px;
+    border-radius: 34px;
+    overflow: hidden;
+    /* Esto obliga a la imagen y al video a respetar las esquinas redondeadas */
+}
+
+/* La imagen nativa se posiciona abajo de todo */
+.hero-poster-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    /* Queda detrás del video y del overlay */
+    pointer-events: none;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    /* Se monta sobre la imagen cuando arranca */
+    background: transparent;
+}
+
+.video-overlay-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    /* Por encima de la imagen y del video */
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 40%,
+            rgba(0, 0, 0, 0.4) 70%,
+            rgba(0, 0, 0, 0.85) 100%);
+}
+
+.video-overlay {
+    position: absolute;
+    left: 4%;
+    bottom: 32px;
+    width: 520px;
+    z-index: 4;
+}
+
+.video-review {
+    background-color: white;
+    border-radius: 34px;
+    display: flex;
+    justify-content: center;
+    padding: 12px 12px 6px 12px;
+    color: var(--blue);
+    font-size: 18px;
+    display: flex;
+    gap: 12px;
+    width: 280px;
+}
+
+.video-review img {
+    width: 84px;
+    object-fit: contain;
+    padding-bottom: 6px;
+}
+
+.video-review p {
+    padding-top: 2px;
+    margin: 0;
+}
+
+.video-overlay h2 {
+    color: white;
+    font-size: 84px;
+    margin: 0;
+    height: 84px;
+    font-weight: 500;
+}
+
+.video-overlay h3 {
+    color: white;
+    font-size: 44px;
+    margin: 0;
+    margin-top: 16px;
+    font-weight: 400;
+}
+
+.video-description {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+}
+
+.video-action {
+    all: unset;
+    display: flex;
+    font-size: 32px;
+    color: white;
+    border-radius: 48px;
+    border: 3px solid white;
+    padding: 18px 20px 8px 24px;
+    gap: 16px;
+    margin-top: 16px;
+    width: 232px;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s transform;
+}
+
+.video-action img {
+    width: 24px;
+    padding-bottom: 8px;
+}
+
+.video-action:hover {
+    transform: scale(1.05);
+}
+
+.video-fud {
+    color: white;
+    margin: 0;
+    padding-top: 10px;
+    margin-left: 48px;
+    font-size: 17px;
+    font-style: italic;
+}
+
+.mobile-cta {
+    all: unset;
+    display: flex;
+    font-size: 28px;
+    color: white;
+    border-radius: 48px;
+    padding: 14px 16px 4px 20px;
+    gap: 16px;
+    margin-top: 16px;
+    width: 200px;
+    justify-content: center;
+    cursor: pointer;
+    background-color: var(--pink);
+    border: 3px solid var(--dark-pink);
+}
+
+.mobile-cta img {
+    width: 24px;
+    padding-bottom: 10px;
+}
+
+.mobile-extra{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.mobile-fud{
+    padding-top: 8px;
+    font-size: 18px;
+    color: var(--pink);
+    padding-left: 2px;
+    font-style: italic;
+}
+
+@media (max-width: 880px) {
+    .hero-video-container {
+        margin-bottom: 8px;
+        height: 500px;
+        border-radius: 24px;
+    }
+
+    .hero-video-container video {
+      
+        position: relative;
+      
+    }
+
+    .video-overlay-gradient {
+      
+        height: 500px;
+        border-radius: 24px;
+    }
+
+    .video-review {
+        padding: 10px 12px 6px 12px;
+        font-size: 14px;
+        display: flex;
+        gap: 4px;
+        width: 200px;
+    }
+
+    .video-review img {
+        width: 58px;
+        padding-bottom: 4px;
+    }
+
+    .video-overlay {
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        left: 0;
+    }
+
+    .video-overlay h2 {
+        font-size: 14vw;
+        margin: 0;
+        height: 48px;
+    }
+
+    .video-overlay h3 {
+        color: white;
+        font-size: 7vw;
+        height: 28px;
+        margin: 0;
+        margin-top: 12px;
+    }
+
+    .video-description {
+        color: white;
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .video-action {
+        font-size: 18px;
+        border-radius: 24px;
+        border: 2px solid white;
+        padding: 10px 14px 4px 18px;
+        gap: 8px;
+        margin-top: 16px;
+        width: 120px;
+    }
+
+    .video-action img {
+        width: 18px;
+        padding-bottom: 6px;
+    }
+
+    .video-fud {
+        padding-top: 10px;
+        margin-left: 12px;
+        font-size: 12px;
+    }
+}

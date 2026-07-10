@@ -4,13 +4,36 @@
     display: flex;
     flex-direction: column;
     font-family: AlternateGotNO2;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+   
+}
+
+h1,h2, strong {
+    font-weight: normal;
+    -webkit-text-stroke: 0.8px currentColor;
+    font-synthesis: none !important;
+}
+h3 {
+    font-weight: normal;
+    -webkit-text-stroke: 0.6px currentColor;
+    font-synthesis: none !important;
+}
+
+h4 {
+    font-weight: normal;
+    -webkit-text-stroke: 0.2px currentColor;
+    font-synthesis: none !important;
 }
 
 :root {
     --black: #1d1d1d;
     --beige: #f8efe8;
     --blue: #333e7e;
+    --dark-blue: #2a346e;
     --pink: #e6007e;
+    --dark-pink: #cf0072;
     --gray: #9d9cad;
     background-color: var(--beige);
     color: var(--black);
@@ -21,8 +44,8 @@
     position: absolute;
     object-fit: cover;
     width: 20%;
-    left: 4px;
-    top: 4px;
+    left: 8px;
+    top: 8px;
 }
 
 .casi-agotado {
@@ -30,6 +53,7 @@
     object-fit: cover;
     height: 10%;
     right: 4px;
+    top: 2px;
 }
 
 .price-discount {
@@ -47,7 +71,7 @@
 
 body {
     margin: 0;
-    padding-top: 90px;
+    padding-top: 108px;
 }
 
 .dot-typing {
@@ -89,7 +113,7 @@ body {
 
 @media (max-width: 880px) {
     body {
-        padding-top: 82px;
+        padding-top: 102px;
     }
 }
 
@@ -102,7 +126,7 @@ body {
 
 @font-face {
     font-family: AlternateGotNO2;
-    src: url("/fonts/AlternateGotNo2D.otf") format("opentype");
+    src: url("/fonts/AlternateGotNo2D.woff") format("woff");
     font-display: swap;
 }
 

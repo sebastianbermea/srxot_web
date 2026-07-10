@@ -8,19 +8,28 @@ import Instagram from '../components/Instagram';
 import ImageFooter from '../components/ImageFooter';
 
 import img from '../assets/images/banners/BottomBanner.jpg';
+import HeroVideo from '../components/HeroVideo';
+import ReviewPanel from '../components/ReviewPanel';
+import PlaySection from '../components/PlaySection';
+import DifferentSection from '../components/DifferentSection';
+import Qualities from '../components/Qualities';
 
 function Inicio() {
   return (
     <>
+      <HeroVideo />
+      <EnvioBanner />
+      <Imagen3D />
+      <ListProductPopular />
+      <ReviewPanel />
+      <Qualities />
       <Hero />
-     <EnvioBanner/>
-     <ListProductPopular/>
-     <Imagen3D/>
-     <Instagram/>
-     <ImageFooter data={{img:img}}/>
+      <DifferentSection />
+      <Instagram />
+      <ImageFooter data={{ img: img }} />
     </>
-   
-    
+
+
   )
 }
 

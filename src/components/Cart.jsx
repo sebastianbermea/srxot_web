@@ -76,7 +76,6 @@ const Cart = () => {
         <AnimatePresence>
             {isOpen && (
                 <>
-                    {/* Fondo semi-transparente (Overlay) */}
                     <motion.div
                         className="cart-overlay"
                         initial={{ opacity: 0 }}
@@ -85,7 +84,6 @@ const Cart = () => {
                         onClick={closeCart}
                     />
 
-                    {/* Contenedor del Carrito */}
                     <motion.div
                         className="cart-sidebar"
                         initial={{ x: '100%' }}

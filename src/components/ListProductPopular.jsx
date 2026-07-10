@@ -9,6 +9,7 @@ import rightarrow from '../assets/icons/right_arrow_pink.svg';
 import best_icon from '../assets/icons/Best-seller.svg';
 import stock_icon from '../assets/icons/casi-agotado.svg';
 import lefttarrow from '../assets/icons/left_arrow_pink.svg';
+import cart_icon from '../assets/icons/cart_white.svg';
 
 import { Link } from 'react-router-dom';
 import { useProducts } from "../contexts/productContext";
@@ -180,7 +181,7 @@ const ListProductPopular = () => {
                                     className={`popular-item-button ${p.metadata?.stock == 0 ? 'out-stock-button' : ''}`}
                                     disabled={p.metadata?.stock == 0}
                                 >
-                                    {p.metadata?.stock == 0 ? "Agotado" : "Añadir al carrito"}
+                                    {p.metadata?.stock == 0 ? "AGOTADO" : "AÑADIR"} <img src={cart_icon}></img>
                                 </button>
                             </div>
                         ))}

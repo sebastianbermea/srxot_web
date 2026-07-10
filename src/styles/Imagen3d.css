@@ -1,39 +1,45 @@
 .parallax-wrapper {
     position: relative;
     width: 100%;
-    height: 42vw;
+    height: 48vw;
     /* Altura de la sección */
     overflow: hidden;
     display: flex;
-    padding: 100px 0;
-
+    flex-direction: column;
+    padding: 30px 0 78px 0;
+    background-color: var(--pink);
 }
 
 .bg-columns {
     display: flex;
     width: 100%;
     height: 100%;
-    background-color: var(--pink);
+
     align-items: center;
+    justify-content: center;
+    gap: 4%;
 }
 
 .column {
-    width: 50%;
-    height: 98%;
-
+    width: 36%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .column img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 40px;
 }
 
 .parallax-floating-img {
     position: absolute;
     /* Centrado horizontal perfecto sobre la unión de las dos imágenes */
     left: 25%;
-    top: 0%;
+    top: -10%;
 
 
     width: 50vw;
@@ -44,25 +50,111 @@
     /* Para que no interfiera con clics en el fondo */
 }
 
+.stickers-example {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    font-size: 2vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.stickers-example img {
+    padding-top: 12px;
+    height: 42vw;
+    width: auto;
+
+}
+
+.stickers-action {
+    all: unset;
+    display: flex;
+    font-size: 24px;
+    color: white;
+    border-radius: 48px;
+    border: 3px solid white;
+    padding: 11px 13px 3px 12px;
+    gap: 8px;
+    margin-top: 12px;
+    width: 102px;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s transform;
+}
+
+.stickers-middle {
+    width: 84px;
+    gap: 12px;
+    padding: 11px 8px 3px 12px;
+}
+
+
+.stickers-action img {
+    height: 16px;
+    width: auto;
+    padding-top: 2px;
+}
+
+.stickers-action:hover {
+    transform: scale(1.05);
+}
+
 @media (max-width: 680px) {
     .parallax-wrapper {
-        height: 50vw;
+        height: 64vw;
     }
 
     .parallax-floating-img {
         position: absolute;
-
         left: 18%;
-        top: 10%;
-
+        top: -10%;
         width: 62vw;
-
     }
 
     .parallax-wrapper {
+        padding: 15px 0 72px 0;
+    }
 
-        padding: 0;
-        padding-top: 80px;
-        padding-bottom: 50px;
+    .stickers-example {
+        max-width: 80px;
+        font-size: 16px;
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .bg-columns {
+        gap: 1%;
+    }
+
+    .column img {
+        border-radius: 16px;
+    }
+
+    .stickers-action {
+        font-size: 18px;
+        gap: 4px;
+        margin-top: 16px;
+        width: 68px;
+        border: 2px solid white;
+        transition: 0.3s transform;
+    }
+
+    .stickers-middle {
+        width: 52px;
+        gap: 5px;
+        padding: 10px 10px 3px 12px;
+    }
+
+    .stickers-example img {
+        padding-top: 5px;
+        height: 40vw;
+        width: auto;
+        padding-bottom: 16px;
+    }
+
+    .stickers-action img {
+        height: 12px;
+        padding-top: 1px;
+        padding-bottom: 0;
     }
 }

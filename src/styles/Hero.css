@@ -1,9 +1,11 @@
 .hero {
-    width: 100%;
+    width: 95%;
     position: relative;
-    aspect-ratio: 7/3;
+    aspect-ratio: 3/2;
     overflow: hidden;
     user-select: none;
+    align-self: center;
+    border-radius: 40px;
 }
 
 .hero a {
@@ -95,6 +97,8 @@
 @media (max-width: 680px) {
     .hero {
         aspect-ratio: 3/2;
+        width: 92%;
+        border-radius: 26px;
     }
 
     .hero .arrow {

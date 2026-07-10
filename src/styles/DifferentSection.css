@@ -1,0 +1,178 @@
+.different-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 64px;
+    margin-bottom: 24px;
+}
+
+.different-section h2 {
+    font-size: 45px;
+    margin: 0;
+    margin-bottom: 16px;
+}
+
+.different-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.dif-column {
+    border: 2px solid var(--blue);
+    border-radius: 32px;
+    margin: 32px;
+    color: var(--blue);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding: 12px;
+}
+
+/* Contenedores por defecto en escritorio */
+.dif-column-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.dif-column img {
+    height: 72px;
+}
+
+.dif-column h3 {
+    font-size: 38px;
+    margin: 0;
+}
+
+.dif-rows-container {
+    width: 100%;
+}
+
+.dif-row {
+    display: flex;
+    width: 94%;
+    gap: 24px;
+    font-size: 26px;
+    height: 128px;
+    justify-content: center;
+    align-items: center;
+}
+
+.dif-row img {
+    width: 84px;
+    height: 84px;
+    justify-self: center;
+    align-self: center;
+    padding-bottom: 10px;
+}
+
+/* ==========================================
+   MÓVIL / RESPONSIVE (max-width: 880px)
+   ========================================== */
+@media (max-width: 880px) {
+    .different-section h2 {
+        font-size: 48px;
+    }
+
+    .different-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .dif-column {
+        gap: 0px;
+        /* Controlado internamente */
+        padding: 16px 20px;
+        margin: 12px 16px;
+        cursor: pointer;
+        align-items: flex-start;
+        transition: background-color 0.3s ease;
+        border-radius: 26px;
+    }
+
+    /* Transformamos la cabecera en una fila horizontal */
+    .dif-column-header {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 12px;
+        position: relative;
+        padding-right: 8px;
+        align-items: center;
+        /* Espacio para la flecha */
+    }
+
+    .dif-column-header img {
+        height: 50px;
+        /* Un poco más pequeña en móvil para que encaje bien */
+    }
+
+    .dif-column h3 {
+        font-size: 26px;
+        /* Ajuste para que quepa en una sola línea */
+        text-align: left;
+        padding-top: 12px;
+    }
+
+    /* Estilos de la flecha / indicador a la derecha */
+    .dif-arrow {
+        position: absolute;
+        right: 0;
+        width: 32px;
+        font-weight: bold;
+        transition: transform 0.2s ease;
+        transform: rotate(-90deg);
+    }
+
+    .dif-arrow.is-open {
+        transform: rotate(0deg);
+    }
+
+    .dif-rows-container {
+        width: 100%;
+        overflow: hidden;
+
+        /* Forzamos a que cerrado mida exactamente 0px */
+        max-height: 4px;
+        opacity: 0;
+
+        /* Animación smooth de ida y vuelta para la altura y la opacidad */
+        transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+            opacity 0.2s ease;
+    }
+
+    /* 🎯 Al abrirse, animará perfectamente hacia abajo */
+    .dif-column.is-open .dif-rows-container {
+        opacity: 1;
+        /* Le damos un valor seguro más alto que el contenido para que se despliegue por completo */
+        max-height: 600px;
+    }
+
+    /* Envoltura obligatoria interna para que el truco del Grid funcione */
+    .dif-rows-content {
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding-top: 16px;
+        /* Separación sutil del título al abrirse */
+    }
+
+    .dif-row {
+        height: auto;
+        width: 100%;
+        gap: 16px;
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .dif-row img {
+        width: 58px;
+        height: 58px;
+        padding-bottom: 8px;
+    }
+}

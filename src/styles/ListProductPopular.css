@@ -2,27 +2,27 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 40px;
 }
 
 .title {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 48px;
-
 }
 
 .popular-list-layout {
     display: grid;
-    grid-template-columns: 12% 76% 12%;
+    grid-template-columns: 8% 84% 8%;
     align-items: center;
     width: 100%;
-    max-width: 1400px;
+
     margin: 0 auto;
 }
 
 .title h2 {
     font-size: 48px;
+
 }
 
 .popular-list {
@@ -44,13 +44,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 10px 10px 10px;
     box-sizing: border-box;
     user-select: none;
     position: relative;
 
     width: 25cqw;
     min-width: 25cqw;
+
 }
 
 .popular-item img {
@@ -59,15 +60,17 @@
 }
 
 .popular-item .best-icon {
-    left: 12px;
+    left: 16px;
+
 }
 
 .popular-item-img-viewport {
     width: 100%;
     aspect-ratio: 6/7;
     background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4%;
-    border: 1px solid var(--pink);
+    border-radius: 10%;
+    border: 2px solid var(--pink);
+    overflow: hidden;
 }
 
 .popular-item-img-viewport img {
@@ -80,18 +83,20 @@
 
 
 .popular-item h3 {
-    font-size: 22px;
+    font-size: 32px;
     text-align: center;
     margin-bottom: auto;
     padding-bottom: 24px;
     white-space: pre-line;
     margin-top: auto;
     padding-top: 8px;
+    font-weight: 500;
 }
 
 .popular-item h4 {
-    font-size: 18px;
+    font-size: 22px;
     color: var(--pink);
+    font-weight: 400;
     padding-bottom: 12px;
 }
 
@@ -109,16 +114,27 @@
 
 .popular-item-button {
     all: unset;
-    width: 100px;
-    height: 25px;
+    width: 108px;
+    height: 32px;
     background-color: var(--pink);
-    border-radius: 8px;
+    border-radius: 54px;
     display: flex;
     justify-content: center;
     color: white;
     align-items: center;
     padding-top: 5px;
     transition: 0.3s;
+    gap: 6px;
+    font-size: 22px;
+    padding-left: 4px;
+    border: 2px solid var(--dark-pink);
+    padding-top: 8px;
+
+}
+
+.popular-item-button img {
+    width: 22px;
+    padding-bottom: 10px;
 }
 
 
@@ -143,13 +159,23 @@
 }
 
 .popular-item .casi-agotado {
-    right: 12px;
+    right: 14px;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 880px) {
+
+    .popular-item h3 {
+        font-size: 24px;
+    }
+
+    .popular-item h4 {
+        font-size: 20px;
+    }
+
     .popular-list-layout {
         display: flex;
         width: 95%;
+        padding-right: 12px;
     }
 
     .popular-list-button {
@@ -166,6 +192,10 @@
     .popular-item-img-viewport img:hover {
         cursor: pointer;
         transform: scale(1.15);
+    }
+
+    .popular-item-img-viewport:hover {
+        overflow: visible;
     }
 
     .popular-item-button:hover {
