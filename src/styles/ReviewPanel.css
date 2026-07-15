@@ -13,15 +13,15 @@
     justify-content: center;
     color: var(--black);
     font-size: 48px;
+    margin: 0;
 }
 
 .review-subtitle {
     display: flex;
     gap: 4px;
-
     justify-content: center;
+    margin: 8px 0;
 }
-
 .review-subtitle img {
     height: 16px;
     width: auto;
@@ -41,33 +41,47 @@
     margin: 0 auto;
 }
 
-.review-list-viewport {
+/* ================= CONEXIÓN DE ALTURAS SWIPER ================= */
+.review-swiper,
+.review-swiper .swiper-wrapper,
+.review-swiper .swiper-slide {
+    height: 100%;
+}
+
+.review-swiper .swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+/* 🎯 Contenedor base de Swiper con padding lateral para proteger bordes */
+.review-swiper {
     overflow: hidden;
     width: 100%;
-    container-type: inline-size;
-    touch-action: pan-y;
-    padding: 15px 0;
-}
-
-.review-list {
-    display: flex;
-    width: max-content;
+    touch-action: pan-y !important;
+    padding: 15px 4px;
+    margin-left: -4px;
+    margin-right: -4px;
     will-change: transform;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+}
+.review-swiper .swiper-slide {
+    height: auto;
+    display: flex;
 }
 
+.review-swiper * {
+    touch-action: pan-y !important;
+}
+
+/* 🎯 Tarjeta individual (Slide) */
 .review-item {
     display: flex;
     flex-direction: column;
-    padding: 0 12px;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
     user-select: none;
     position: relative;
-    width: 28.57cqw;
-    min-width: 28.57cqw;
 }
-
 
 .review-card-inner {
     border-radius: 24px;
@@ -77,27 +91,32 @@
     flex-direction: column;
     height: 100%;
     min-height: 200px;
-    justify-content: space-between;
-    transition: transform 0.3s ease;
+    box-sizing: border-box;
+    background-color: transparent;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    transition: none;
+    /* Cero transiciones globales por defecto en móvil */
 }
 
 .review-card-img {
     width: 100%;
-    height: 350px;
+    aspect-ratio: 3 / 4;
+    height: auto;
     object-fit: cover;
     border-radius: 18px;
     -webkit-user-drag: none;
-    
-        /* 2. Evita que se seleccione el elemento al mantener presionado */
-        user-select: none;
-        -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+    max-height: 400px;
 }
 
 .stars-row {
     color: var(--blue);
-    /* Color dorado para las estrellas */
     font-size: 22px;
     letter-spacing: 2px;
+    margin-top: 12px;
 }
 
 .review-comment {
@@ -105,15 +124,19 @@
     line-height: 1.5;
     color: var(--black);
     font-style: italic;
-    margin-bottom: 16px;
     display: -webkit-box;
-    margin: 0;
-    margin: 2px 0 4px 0;
-
+    margin: 2px 0 12px 0;
     padding: 0 2px;
-    /* Limita a 4 líneas de texto máximo */
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.review-bottom {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    padding: 0 4px;
+    margin-top: auto;
 }
 
 .review-author {
@@ -127,10 +150,8 @@
 .verified-tag {
     font-size: 12px;
     color: var(--pink);
-    /* Verde de éxito */
     font-weight: 300;
     align-self: flex-end;
-
 }
 
 .review-list-button {
@@ -140,20 +161,14 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: 0.3s transform;
 }
 
 .review-list-button img {
     width: 28px;
 }
 
-.review-list-button:hover {
-    transform: scale(1.05);
-}
-
 .review-action {
     all: unset;
-
     display: flex;
     font-size: 28px;
     color: white;
@@ -166,9 +181,7 @@
     border: 3px solid var(--dark-blue);
     cursor: pointer;
     align-self: center;
-    transition: 0.3s transform;
     background-color: var(--blue);
-
 }
 
 .review-action img {
@@ -176,60 +189,62 @@
     padding-bottom: 9px;
 }
 
-.review-bottom {
-    display: flex;
-    justify-content: space-between;
-    height: 20px;
-    padding: 0 4px;
-}
-
-/* ================= RESPONSIVE MÓVIL ================= */
+/* ================= RESPONSIVE MÓVIL Y ESCRITORIO ================= */
 @media (max-width: 880px) {
     .review-panel-layout {
         display: block;
-        width: 95%;
+        width: 100%;
         padding: 0;
-        padding-right: 6px;
     }
 
     .review-list-button {
         display: none;
-        /* Desactivado en móvil */
-    }
-
-    .review-list-viewport {
-        width: 100%;
-        padding: 10px 0;
-        overflow: hidden;
-    }
-
-    /* 🎯 AJUSTE DE MEDIDAS PARA MÓVIL: Muestra una tarjeta completa y la mitad de la otra */
-    .review-item {
-        width: 75cqw;
-        min-width: 75cqw;
-        padding: 0 10px;
-        /* Espaciado uniforme entre tarjetas */
     }
 
     .review-card-inner {
         padding: 8px;
-        min-height: 220px;
-        /* Altura controlada para que no se colapse el texto */
     }
 
     .review-card-img {
-        height: 250px;
+        aspect-ratio: 3 / 4;
+            max-height: 350px;
+            height: auto;
     }
 
     .review-title {
         font-size: 36px;
         margin: 0;
     }
+
+    .review-subtitle {
+        margin: 8px 0;
+    }
 }
 
-@media (hover: hover) {
+/* 🎯 EFECTOS HOVER LIMITADOS A COMPUTADORAS */
+@media (min-width: 881px) and (hover: hover) {
+    .review-card-inner {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
     .review-card-inner:hover {
         transform: translateY(-4px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .review-list-button {
+        transition: 0.3s transform;
+    }
+
+    .review-list-button:hover {
+        transform: scale(1.05);
+    }
+
+    .review-action {
+        transition: 0.3s transform;
+    }
+
+    .review-action:hover {
+        transform: scale(1.05);
     }
 }

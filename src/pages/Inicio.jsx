@@ -22,6 +22,7 @@ function Inicio() {
       <Imagen3D />
       <ListProductPopular />
       <ReviewPanel />
+      
       <Qualities />
       <Hero />
       <DifferentSection />

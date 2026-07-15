@@ -53,6 +53,7 @@ export const CartContextProvider = ({ children }) => {
     const closeCart = () => setIsOpen(false);
 
     const addToCart = (product, q, selectedSize = null) => {
+        console.log(product);
         // 1. Validaciones de Talla y Stock Crítico
         if (product.metadata.hasOwnProperty("sizes") && !selectedSize) {
             alert("Por favor, selecciona una talla para este producto.");

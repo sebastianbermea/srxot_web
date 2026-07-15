@@ -38,15 +38,25 @@ function App() {
       }
     });
 
-    // 2. ⚙️ Opciones de configuración inicial de Meta
     const options = {
       autoConfig: true,
       debug: false,
     };
 
-    // 3. 🚀 Inicializa el Píxel con tu ID Real
-    ReactPixel.init('1659296348656819', null, options);
-    ReactPixel.pageView();
+    // 3. 🚀 Inicializa el Píxel de forma segura evitando crasheos
+    // Extraemos la instancia real si viene envuelta en .default (común en Vite/ESM)
+    const pixelInstance = ReactPixel.default || ReactPixel;
+
+    if (pixelInstance && typeof pixelInstance.init === 'function') {
+      try {
+        pixelInstance.init('1659296348656819', null, options);
+        pixelInstance.pageView();
+      } catch (error) {
+        console.error("Error al inicializar el Pixel de Facebook:", error);
+      }
+    } else {
+      console.warn("No se pudo cargar la librería react-facebook-pixel correctamente.");
+    }
 
     // Limpieza: Cuando la app se desmonte (raro que pase), destruye el escuchador de auth
     return () => unsubscribe();

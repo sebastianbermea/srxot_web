@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     margin-bottom: 40px;
+    width: 100%;
 }
 
 .title {
@@ -11,142 +12,206 @@
     justify-content: center;
 }
 
-.popular-list-layout {
-    display: grid;
-    grid-template-columns: 8% 84% 8%;
-    align-items: center;
-    width: 100%;
-
-    margin: 0 auto;
-}
-
 .title h2 {
     font-size: 48px;
-
+    margin: 0;
+    margin-bottom: 24px;
 }
 
-.popular-list {
-    display: flex;
-    width: max-content;
-    will-change: transform;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-.popular-list-viewport {
-    overflow: hidden;
-    width: 100%;
-    container-type: inline-size;
-    touch-action: pan-y;
-}
-
-.popular-item {
-    display: flex;
-    flex-direction: column;
+/* 🎯 El grid asegura que los botones laterales tengan su espacio en PC */
+.popular-list-layout {
+    display: grid;
+    grid-template-columns: 6% 88% 6%;
     align-items: center;
-    padding: 0 10px 10px 10px;
-    box-sizing: border-box;
-    user-select: none;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+/* 🎯 Ajustes principales de Swiper */
+.popular-swiper {
+    width: 100%;
+    overflow: hidden;
+    will-change: transform;
+
+    padding-left: 4px;
+        padding-right: 4px;
+    
+        /* 🎯 Compensamos ese padding para que el carrusel siga alineado con tu título */
+        margin-left: -4px;
+        margin-right: -4px;
+}
+
+/* 🎯 Flex de la tarjeta que centra todo en vertical */
+.popular-item {
+display: grid;
+    /* 1. Viewport (auto), 2. Título (1fr para que absorba el espacio), 3. Precio (auto), 4. Botón (auto) */
+    grid-template-rows: auto 1fr auto auto;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    height: 100%;
     position: relative;
-
-    width: 25cqw;
-    min-width: 25cqw;
-
-}
-
-.popular-item img {
-    -webkit-user-drag: none;
     user-select: none;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
 }
 
-.popular-item .best-icon {
-    left: 16px;
-
-}
-
+/* 🎯 El viewport asegura que la imagen mantenga su tamaño exacto */
 .popular-item-img-viewport {
     width: 100%;
     aspect-ratio: 6/7;
     background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 10%;
+    border-radius: 24px;
     border: 2px solid var(--pink);
     overflow: hidden;
+    /* Corta todo lo que se salga de la botella (ej: pegatinas) */
+    position: relative;
+    /* Clave para poder usar absolute en los stickers */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .popular-item-img-viewport img {
     width: 100%;
     height: 100%;
     display: block;
-    transition: .4s;
+    object-fit: contain;
+    padding: 10px;
+    box-sizing: border-box;
     -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    /* Bloquea el menú contextual de Safari */
+    pointer-events: none;
+    transition: none;
+    /* Pasa el toque directamente al carrusel */
 }
 
+.popular-item-img-viewport a,
+.popular-item-img-viewport img {
+    /* 1. PC: Evita que el navegador intente "agarrar" la imagen como archivo */
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-select: none;
+    pointer-events: auto;
+}
+
+.popular-swiper,
+.popular-swiper * {
+    touch-action: pan-y !important;
+}
+
+/* 🎯 STICKERS - Usan coordenadas relativas AL VIEWPORT, no a la tarjeta entera */
+.popular-item-img-viewport .best-icon {
+    left: 10px;
+    top: 10px;
+    position: absolute;
+    z-index: 2;
+    width: 20%;
+    height: auto;
+    padding: 0;
+}
+
+.popular-item-img-viewport .casi-agotado {
+    right: 6px;
+    top: 2px;
+    position: absolute;
+    z-index: 2;
+    width: 45%;
+    height: auto;
+    padding: 0;
+}
 
 .popular-item h3 {
     font-size: 32px;
     text-align: center;
-    margin-bottom: auto;
-    padding-bottom: 24px;
     white-space: pre-line;
-    margin-top: auto;
-    padding-top: 8px;
+    margin: 15px 0 10px 0;
     font-weight: 500;
+    width: 100%;
+}
+
+.price-wrapper {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 15px;
+    justify-content: center;
 }
 
 .popular-item h4 {
-    font-size: 22px;
+    font-size: 24px;
     color: var(--pink);
     font-weight: 400;
-    padding-bottom: 12px;
+    margin: 0;
+    text-align: center;
 }
 
+/* 🎯 BOTONES DE NAVEGACIÓN PC (IZQ / DER) */
 .popular-list-button {
     all: unset;
     height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .popular-list-button img {
     width: 32px;
-    padding-bottom: 5px;
 }
 
+.popular-list-button:hover {
+    transform: scale(1.1);
+}
+
+/* 🎯 BOTÓN AÑADIR (Bloque de nivel visible en todo momento) */
 .popular-item-button {
     all: unset;
     width: 108px;
-    height: 32px;
+    height: 42px;
     background-color: var(--pink);
     border-radius: 54px;
     display: flex;
     justify-content: center;
     color: white;
     align-items: center;
-    padding-top: 5px;
     transition: 0.3s;
-    gap: 6px;
-    font-size: 22px;
-    padding-left: 4px;
+    gap: 8px;
+    font-size: 18px;
     border: 2px solid var(--dark-pink);
-    padding-top: 8px;
-
+    cursor: pointer;
+    box-sizing: border-box;
+    padding-top: 6px;
+    margin-top: auto;
 }
 
 .popular-item-button img {
-    width: 22px;
-    padding-bottom: 10px;
+    width: 18px;
+    padding-bottom: 6px;
 }
-
 
 .out-stock-button {
     background-color: var(--gray);
     cursor: not-allowed;
+    border-color: var(--gray);
 }
 
 .popular-footer {
     display: flex;
     justify-content: end;
-    padding: 16px 12%;
+    padding: 16px 8%;
     align-items: center;
 }
 
@@ -158,48 +223,38 @@
     cursor: pointer;
 }
 
-.popular-item .casi-agotado {
-    right: 14px;
-}
-
+/* ================= RESPONSIVE MÓVIL ================= */
 @media (max-width: 880px) {
 
-    .popular-item h3 {
-        font-size: 24px;
-    }
-
-    .popular-item h4 {
-        font-size: 20px;
-    }
-
+    /* En móvil rompemos el grid para usar todo el ancho de la pantalla */
     .popular-list-layout {
-        display: flex;
-        width: 95%;
-        padding-right: 12px;
+        display: block;
+        width: 100%;
+        padding: 0;
     }
 
+    /* Ocultamos los botones físicos porque en móvil usamos swipe */
     .popular-list-button {
         display: none;
     }
-
-    .popular-item {
-        width: 40cqw;
-        min-width: 40cqw;
-    }
 }
 
-@media (hover: hover) {
-    .popular-item-img-viewport img:hover {
-        cursor: pointer;
-        transform: scale(1.15);
+@media (min-width: 881px) and (hover: hover) {
+    .popular-item-img-viewport img {
+        /* 🎯 La transición SOLO existe en PC y SOLO para la propiedad transform */
+        transition: transform 0.4s ease;
     }
 
-    .popular-item-img-viewport:hover {
-        overflow: visible;
+    .popular-item-img-viewport img:hover {
+        cursor: pointer;
+        transform: scale(1.08);
+        /* */
     }
 
     .popular-item-button:hover {
         transform: scale(1.05);
+        /* */
         cursor: pointer;
+        /* */
     }
 }
