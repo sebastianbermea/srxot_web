@@ -35,6 +35,7 @@ h4 {
     --pink: #e6007e;
     --dark-pink: #cf0072;
     --gray: #9d9cad;
+    --dark-gray: #84848c;
     background-color: var(--beige);
     color: var(--black);
 }

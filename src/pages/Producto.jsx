@@ -29,7 +29,6 @@ function Producto() {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [count, setCount] = useState(1);
 
-    const flavors = ["toronja", "limon", "lima", "naranja", "chile"];
 
     useEffect(() => {
         async function getProductInfo() {
@@ -110,6 +109,10 @@ function Producto() {
         setCount(q);
     };
 
+    const flavors = productInfo?.metadata?.flavors
+        ? productInfo.metadata.flavors.replace(/"/g, '').split(',')
+        : [];
+
     const handleBlur = () => {
         if (count === '') checkStock(1);
     };
@@ -142,38 +145,37 @@ function Producto() {
                             {productInfo?.metadata?.stock && productInfo?.metadata?.stock > 0 && productInfo?.metadata?.stock < 20 && <img className='casi-agotado' src={stock_icon} alt="Casi Agotado" />}
                         </div>
                     </div>
+                    {flavors &&
+                        <div className='flavors-pills-list'>
+                            {flavors.map((flavorKey) => {
+                                const flavor = flavors_data[flavorKey];
+                                if (!flavor) return null;
 
-                    {/* Pastillas de sabores inferiores */}
-                    <div className='flavors-pills-list'>
-                        {flavors.map((flavorKey) => {
-                            const flavor = flavors_data[flavorKey];
-                            if (!flavor) return null;
-
-                            return (
-                                <div
-                                    key={flavorKey}
-                                    className='flavor-pill'
-                                    style={{
-                                        backgroundColor: flavor.back_color,
-                                        borderColor: flavor.out_color
-                                    }}
-                                >
-                                    <img
-                                        src={flavor.image}
-                                        alt={flavor.title}
-                                        className='flavor-pill-icon'
-                                        draggable="false"
-                                    />
-                                    <span
-                                        className='flavor-pill-title'
-                                        style={{ color: flavor.out_color }}
+                                return (
+                                    <div
+                                        key={flavorKey}
+                                        className='flavor-pill'
+                                        style={{
+                                            backgroundColor: flavor.back_color,
+                                            borderColor: flavor.out_color
+                                        }}
                                     >
-                                        {flavor.title}
-                                    </span>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                        <img
+                                            src={flavor.image}
+                                            alt={flavor.title}
+                                            className='flavor-pill-icon'
+                                            draggable="false"
+                                        />
+                                        <span
+                                            className='flavor-pill-title'
+                                            style={{ color: flavor.out_color }}
+                                        >
+                                            {flavor.title}
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                        </div>}
                 </div>
 
                 <div className='product-main-description'>

@@ -149,14 +149,16 @@
     color: white;
     display: flex;
     border-radius: 24px;
-    width: 120px;
-    padding: 2px 8px;
-    gap: 4px;
+    width: 132px;
+    padding: 8px 10px;
+    justify-content: center;
+    gap: 6px;
+    border: 2px solid var(--dark-gray);
 }
 
 .product-main-description .product-stickers p{
     padding-top: 4px;
-    font-size: 18px;
+    font-size: 20px;
     font-style: italic;
 }
 
