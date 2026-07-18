@@ -11,6 +11,7 @@ import rightarrow from '../assets/icons/right_arrow_pink.svg';
 import lefttarrow from '../assets/icons/left_arrow_pink.svg';
 import best_icon from '../assets/icons/Best-seller.svg';
 import stock_icon from '../assets/icons/casi-agotado.svg';
+import cart_icon from '../assets/icons/cart_white.svg';
 
 import img from '../assets/images/banners/BottomBanner4.jpg';
 
@@ -73,7 +74,8 @@ function Tienda() {
                   <button
                     onClick={() => addToCart(p, 1)}
                     className={`popular-item-button ${p.metadata?.stock == 0 ? 'out-stock-button': ''}`}>
-                      {p.metadata?.stock==0 ? "Agotado" : "Añadir al carrito"}</button>
+                      <strong>{p.metadata?.stock == 0 ? "AGOTADO" : "AÑADIR"}</strong>  <img src={cart_icon} alt="Carrito"></img>
+                      </button>
                 </div>
               ))}
             </div>

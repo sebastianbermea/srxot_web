@@ -20,12 +20,11 @@
 
 /* 🎯 El grid asegura que los botones laterales tengan su espacio en PC */
 .popular-list-layout {
-    display: grid;
-    grid-template-columns: 6% 88% 6%;
+    display: flex;
     align-items: center;
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
-    max-width: 1400px;
+
 }
 
 /* 🎯 Ajustes principales de Swiper */
@@ -176,7 +175,6 @@ display: grid;
     transform: scale(1.1);
 }
 
-/* 🎯 BOTÓN AÑADIR (Bloque de nivel visible en todo momento) */
 .popular-item-button {
     all: unset;
     width: 108px;
@@ -188,7 +186,7 @@ display: grid;
     color: white;
     align-items: center;
     transition: 0.3s;
-    gap: 8px;
+    gap: 12px;
     font-size: 18px;
     border: 2px solid var(--dark-pink);
     cursor: pointer;
@@ -210,33 +208,35 @@ display: grid;
 
 .popular-footer {
     display: flex;
-    justify-content: end;
-    padding: 16px 8%;
+    justify-content: space-between;
+    padding: 16px 2%;
     align-items: center;
 }
 
 .popular-footer a {
     all: unset;
     text-align: end;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--pink);
     cursor: pointer;
+    border: 2px solid var(--pink);
+    border-radius: 100px;
+    padding: 8px 12px 2px 12px;
+}
+
+.footer-buttons{
+    display: flex;
+    gap: 12px;
 }
 
 /* ================= RESPONSIVE MÓVIL ================= */
 @media (max-width: 880px) {
-
-    /* En móvil rompemos el grid para usar todo el ancho de la pantalla */
     .popular-list-layout {
         display: block;
         width: 100%;
         padding: 0;
     }
 
-    /* Ocultamos los botones físicos porque en móvil usamos swipe */
-    .popular-list-button {
-        display: none;
-    }
 }
 
 @media (min-width: 881px) and (hover: hover) {

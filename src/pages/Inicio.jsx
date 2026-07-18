@@ -13,6 +13,7 @@ import ReviewPanel from '../components/ReviewPanel';
 import PlaySection from '../components/PlaySection';
 import DifferentSection from '../components/DifferentSection';
 import Qualities from '../components/Qualities';
+import FaqPanel from '../components/FaqPanel';
 
 function Inicio() {
   return (
@@ -26,6 +27,7 @@ function Inicio() {
       <Qualities />
       <Hero />
       <DifferentSection />
+      <FaqPanel/>
       <Instagram />
       <ImageFooter data={{ img: img }} />
     </>

@@ -10,9 +10,11 @@ import Tienda from './pages/Tienda';
 import Nosotros from './pages/Nosotros';
 import Contacto from './pages/Contacto';
 import Account from './pages/Account';
+import FAQ from './pages/FAQ';
 import Success from './pages/Success';
 import Terminos from './pages/Terminos';
 import Aviso from './pages/Aviso';
+import NotFound from './pages/NotFound';
 import ScrollToTop from './components/ScrollToTop';
 import Cart from './components/Cart';
 import AdminDashboard from './admin/AdminDashboard';
@@ -77,10 +79,12 @@ function App() {
           <Route path='/nosotros' exact Component={Nosotros}/>
           <Route path='/contacto' exact Component={Contacto}/>
           <Route path='/account' exact Component={Account}/>
+          <Route path='/faq' exact Component={FAQ}/>
           <Route path='/success' exact Component={Success}/>
           <Route path='/terminos' exact Component={Terminos}/>
           <Route path='/aviso' exact Component={Aviso}/>
           <Route path='/admin-panel' exact Component={AdminDashboard}/>
+          <Route path="*" Component={NotFound} />
         </Routes>
         <Footer/>
       </Router>

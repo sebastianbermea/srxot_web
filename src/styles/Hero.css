@@ -1,5 +1,5 @@
 .hero {
-    width: 95%;
+    width: 90%;
     position: relative;
     aspect-ratio: 3/2;
     overflow: hidden;
@@ -91,10 +91,10 @@
 }
 
 .bottom button img:active {
-    scale: 95%;
+    scale: 92%;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 880px) {
     .hero {
         aspect-ratio: 3/2;
         width: 92%;

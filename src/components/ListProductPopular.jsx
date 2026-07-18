@@ -24,6 +24,10 @@ const ListProductPopular = () => {
     const { products } = useProducts();
     const { addToCart } = useCart();
 
+    if (!products || products.length === 0) {
+        return null; 
+    }
+
     const popularItems = products.filter(p => p.metadata?.popular === "true");
 
     if (popularItems.length === 0) return null;
@@ -35,19 +39,16 @@ const ListProductPopular = () => {
             </div>
 
             <div className='popular-list-layout'>
-                <button className='popular-list-button popular-list-button-prev'>
-                    <img src={lefttarrow} alt="Atrás" />
-                </button>
+            
                 <Swiper
                     key={popularItems.length}
-                    modules={isMobile ? [Autoplay] : [Autoplay, Navigation]}
-                    navigation={isMobile ? false : {
+                    modules={[Autoplay, Navigation]}
+                    navigation= {{
                         prevEl: '.popular-list-button-prev',
                         nextEl: '.popular-list-button-next',
                     }}
 
                     loop={true}
-                    loopedSlides={4}
                     autoplay={{ delay: 5000, disableOnInteraction: false }}
 
                     touchEventsTarget="wrapper"
@@ -100,13 +101,21 @@ const ListProductPopular = () => {
                     ))}
                 </Swiper>
 
-                <button className='popular-list-button popular-list-button-next'>
-                    <img src={rightarrow} alt="Siguiente" />
-                </button>
+              
             </div>
+            
 
             <div className='popular-footer'>
-                <Link to="/tienda">Ver todo</Link>
+                <Link to="/tienda">VER TODO</Link>
+                
+            <div className='footer-buttons'>
+                    <button className='popular-list-button popular-list-button-prev'>
+                        <img src={lefttarrow} alt="Atrás" />
+                    </button>
+                    <button className='popular-list-button popular-list-button-next'>
+                        <img src={rightarrow} alt="Siguiente" />
+                    </button>
+            </div>
             </div>
         </div>
     );

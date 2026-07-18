@@ -1,8 +1,9 @@
 .imageC {
     position: relative;
-    width: 100%;
+    width: 92%;
     height: 30vw;
     min-height: 250px;
+    border-radius: 42px;
     overflow: hidden;
 }
 
@@ -45,6 +46,7 @@
 @media (max-width: 680px) {
     .imageC {
         height: 45vw;
+        border-radius: 28px;
     }
 
     .imageC h2 {

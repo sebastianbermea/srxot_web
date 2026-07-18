@@ -23,8 +23,8 @@
     width: 100%;
     height: auto;
     background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4%;
-    border: 1px solid var(--pink);
+    border-radius: 32px;
+    border: 2px solid var(--pink);
 }
 
 .shop-item-img-viewport img {

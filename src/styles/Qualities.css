@@ -4,6 +4,7 @@
     width: 96%;
     align-self: center;
     justify-self: center;
+    margin-bottom: 24px;
 }
 
 .qualities-title {
@@ -49,7 +50,7 @@
     }
    .qual-row {
       
-       padding: 16px;
+       padding: 8px;
        margin-bottom: 32px;
    }
 
@@ -58,6 +59,6 @@
    }
 
    .qual-row p {
-       font-size: 18px;
+       font-size: 20px;
    }
 }

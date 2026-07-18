@@ -1,6 +1,6 @@
 .image-footer {
-    padding-top: 80px;
-    width: 95%;
+    margin-block-end: 40px;
+    width: 90%;
     height: 40vw;
     position: relative;
     align-self: center;
@@ -19,10 +19,7 @@
 .image-footer h2 {
     color: white;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 28%;
-    bottom: 0;
+    top: 20%;
     right: 0;
     left: 0;
     font-size: 10vw;
@@ -30,18 +27,22 @@
 
 }
 
-@media (max-width: 680px) {
+@media (max-width: 880px) {
     .image-footer {
         height: 55vw;
         border-radius: 28px;
     }
 
     .image-footer h2 {
-        top: 40%;
+        top: 22%;
         font-size: 13vw;
     }
-        .image-footer img {
-         
-            border-radius: 26px;
-        }
+
+    .image-footer img {
+        border-radius: 26px;
+    }
+
+    .image-footer {
+        margin-top: 20px;
+    }
 }

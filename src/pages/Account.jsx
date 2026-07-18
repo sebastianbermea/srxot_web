@@ -167,7 +167,7 @@ function Account() {
                         <button
                             onClick={() => logout()}
                         >
-                            Cerrar Sesion
+                            CERRAR SESION
                         </button>
                     </div>
 
@@ -242,14 +242,14 @@ function Account() {
                                                     <div className="dot"></div>
                                                 </div>
                                             ) : (
-                                                isLogin ? 'Iniciar Sesión' : 'Registrarse'
+                                                isLogin ? 'INICIAR SESION' : 'REGISTRARSE'
                                             )}
                                         </button>
                                         <button type="button" className="btn-google"
                                             onClick={handleGoogle}
                                         >
                                             <img src={googleIcon} alt="Google" />
-                                            {isLogin ? 'Inicia sesión con Google' : 'Regístrate con Google'}
+                                            {isLogin ? 'INICIA SESION CON GOOGLE' : 'REGISTRATE CON GOOGLE'}
                                         </button>
 
                                         <button

@@ -5,11 +5,13 @@ import icon2 from './assets/icons/reunion_icon.svg';
 import icon3 from './assets/icons/solo_icon.svg';
 import icon4 from './assets/icons/rules_icon.svg';
 
-export const costoEnvioGratis = 1119;
+
+
+export const costoEnvioGratis = 1099;
 export const MAX_TOTAL_CART = 32;
 
 export const img_data = [
-  
+
     {
         cover: img4,
         title: "¡Comparte tu experiencia!",
@@ -36,6 +38,114 @@ export const premio_categories = [
     },
 ]
 
+import arandano from './assets/images/flavors/Arandano.png';
+import chile from './assets/images/flavors/Chile.png';
+import coco from './assets/images/flavors/Coco.png';
+import dragonfruit from './assets/images/flavors/dragonfruit.png';
+import fresa from './assets/images/flavors/Fresa.png';
+import granada from './assets/images/flavors/Granada.png';
+import guayaba from './assets/images/flavors/Guayaba.png';
+import lima from './assets/images/flavors/Lima.png';
+import limon from './assets/images/flavors/Limon.png';
+import mango from './assets/images/flavors/Mango.png';
+import menta from './assets/images/flavors/Menta.png';
+import naranja from './assets/images/flavors/Naranja.png';
+import pina from './assets/images/flavors/Pina.png';
+import sandia from './assets/images/flavors/Sandia.png';
+import toronja from './assets/images/flavors/Toronja.png';
+
+export const flavors_data = {
+    "arandano": {
+        "title": "Arándano R.",
+        "image": arandano,
+        "back_color": '#b8324833', // 20% de opacidad
+        "out_color": '#851a2c'
+    },
+    "chile": {
+        "title": "Chile",
+        "image": chile,
+        "back_color": '#c94c4c33',
+        "out_color": '#962d2d'
+    },
+    "coco": {
+        "title": "Coco",
+        "image": coco,
+        "back_color": '#d2c2b433',
+        "out_color": '#8a7360'
+    },
+    "dragonfruit": {
+        "title": "Dragonfruit",
+        "image": dragonfruit,
+        "back_color": '#d64c8d33',
+        "out_color": '#a82c65'
+    },
+    "fresa": {
+        "title": "Fresa",
+        "image": fresa,
+        "back_color": '#e0536833',
+        "out_color": '#b02e41'
+    },
+    "granada": {
+        "title": "Granada",
+        "image": granada,
+        "back_color": '#ad3c4a33',
+        "out_color": '#7a222d'
+    },
+    "guayaba": {
+        "title": "Guayaba",
+        "image": guayaba,
+        "back_color": '#e6939a33',
+        "out_color": '#bd6068'
+    },
+    "lima": {
+        "title": "Lima",
+        "image": lima,
+        "back_color": '#a2c75433',
+        "out_color": '#72942c'
+    },
+    "limon": {
+        "title": "Limón",
+        "image": limon,
+        "back_color": '#7cb05d33',
+        "out_color": '#4d8031'
+    },
+    "mango": {
+        "title": "Mango",
+        "image": mango,
+        "back_color": '#f2a93b33',
+        "out_color": '#c27c15'
+    },
+    "menta": {
+        "title": "Menta",
+        "image": menta,
+        "back_color": '#7ec4ad33',
+        "out_color": '#4c917b'
+    },
+    "naranja": {
+        "title": "Naranja",
+        "image": naranja,
+        "back_color": '#e8833a33',
+        "out_color": '#bd5c19'
+    },
+    "pina": {
+        "title": "Piña",
+        "image": pina,
+        "back_color": '#f7d35433',
+        "out_color": '#c7a324'
+    },
+    "sandia": {
+        "title": "Sandía",
+        "image": sandia,
+        "back_color": '#e35d6a33',
+        "out_color": '#b3323e'
+    },
+    "toronja": {
+        "title": "Toronja",
+        "image": toronja,
+        "back_color": '#f08a7333',
+        "out_color": '#c45e47'
+    }
+};
 export const game = [
     //Fiesta
     [
@@ -135,7 +245,7 @@ export const game = [
             "Los demas decidiran tu reto.",
             "Saluda a alguien como si lo conocieras."
         ]
-        
+
     ],
     //Reunion
     [
@@ -437,6 +547,6 @@ export const game = [
         ]
 
     ]
-    
+
 ];
-  
+

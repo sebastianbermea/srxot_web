@@ -9,8 +9,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import '../styles/ReviewPanel.css';
 
-import rightarrow from '../assets/icons/right_arrow.svg';
-import lefttarrow from '../assets/icons/left_arrow.svg';
+import rightarrow from '../assets/icons/right_arrow_blue.svg';
+import lefttarrow from '../assets/icons/left_arrow_blue.svg';
 import rightarrow2 from '../assets/icons/arrow_right.svg';
 import stars from '../assets/images/Estrellas.png';
 
@@ -22,6 +22,8 @@ import rev5 from '../assets/images/reviews/Review5.jpg';
 import rev6 from '../assets/images/reviews/Review6.jpg';
 import rev7 from '../assets/images/reviews/Review7.jpg';
 import rev8 from '../assets/images/reviews/Review8.jpg';
+import rev9 from '../assets/images/reviews/Review9.jpeg';
+import rev10 from '../assets/images/reviews/Review10.jpeg';
 
 const mockReviews = [
     { id: 1, name: "Santiago B.", rating: 5, img: rev1, comment: "El sabor es muy rico, no cala en la garganta." },
@@ -31,7 +33,9 @@ const mockReviews = [
     { id: 5, name: "Karla G.", rating: 5, img: rev5, comment: "Mi abuelito no toma mucho pero le encantó, compraré para mi boda." },
     { id: 6, name: "Francisco L.", rating: 5, img: rev6, comment: "Muy bueno con agua mineral y limon, como coctel ya preparado." },
     { id: 7, name: "Raul V.", rating: 5, img: rev7, comment: "Fui la sensación repartiendo shots." },
-    { id: 8, name: "Daniel M.", rating: 5, img: rev8, comment: "Excelente para mi bar, preparo bebidas que se venden mucho." }
+    { id: 8, name: "Daniel M.", rating: 5, img: rev8, comment: "Excelente para mi bar, preparo bebidas que se venden mucho." },
+    { id: 9, name: "Sofia T.", rating: 5, img: rev9, comment: "Lo recomiendo con ICEE en el cine, delicioso." },
+    { id: 10, name: "Lucila B.", rating: 5, img: rev10, comment: "Lo use como regalo de recuerdo en una fiesta, a todos les gusto." }
 ];
 
 const ReviewPanel = () => {
@@ -46,12 +50,6 @@ const ReviewPanel = () => {
             </div>
 
             <div className='review-panel-layout'>
-                {!isMobile && (
-                    <button className='review-list-button review-list-button-prev'>
-                        <img src={lefttarrow} alt="Atrás" />
-                    </button>
-                )}
-
                 <Swiper
                     key={mockReviews.length}
                     modules={[Autoplay, Navigation]}
@@ -62,10 +60,8 @@ const ReviewPanel = () => {
                     loop={true}
                     autoplay={{ delay: 104000, disableOnInteraction: false }}
 
-                    /* 🎯 Optimización Safari e iOS */
                     touchEventsTarget="wrapper"
                     touchStartPreventDefault={false}
-                    loopedSlides={3}
 
                     breakpoints={{
                         0: {
@@ -106,13 +102,18 @@ const ReviewPanel = () => {
                     ))}
                 </Swiper>
 
-                {!isMobile && (
-                    <button className='review-list-button review-list-button-next'>
-                        <img src={rightarrow} alt="Siguiente" />
-                    </button>
-                )}
             </div>
 
+            
+
+            <div className='buttons-footer'>
+                <button className='review-list-button review-list-button-prev'>
+                    <img src={lefttarrow} alt="Atrás" />
+                </button>
+                <button className='review-list-button review-list-button-next'>
+                    <img src={rightarrow} alt="Siguiente" />
+                </button>
+            </div>
             <Link className='review-action' to='/producto/prod_Tl084N7kpNl0JO'>
                 QUIERO COMPRAR<img src={rightarrow2} alt="Flecha" />
             </Link>

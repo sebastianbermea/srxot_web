@@ -53,6 +53,7 @@ export const CartContextProvider = ({ children }) => {
     const closeCart = () => setIsOpen(false);
 
     const addToCart = (product, q, selectedSize = null) => {
+
         console.log(product);
         // 1. Validaciones de Talla y Stock Crítico
         if (product.metadata.hasOwnProperty("sizes") && !selectedSize) {
@@ -64,17 +65,27 @@ export const CartContextProvider = ({ children }) => {
         trackAddToCart(product, (product.discount?.active
             ? product.discount.unit_amount
             : product.price.unit_amount)/100, q, product.discount?.active);
-
-        ReactPixel.track('AddToCart', {
-            content_name: product.name,
-            content_ids: [product.id],
-            content_type: 'product',
-            quantity: q,
-            value: (product.discount?.active
-                ? product.discount.unit_amount
-                : product.price.unit_amount) / 100 * (parseInt(q) || 1), // Valor total del lote añadido
-            currency: 'MXN'
-        });
+            
+        const pixelInstance = ReactPixel.default || ReactPixel;
+        if (pixelInstance && typeof pixelInstance.init === 'function') {
+            try {
+                pixelInstance.track('AddToCart', {
+                    content_name: product.name,
+                    content_ids: [product.id],
+                    content_type: 'product',
+                    quantity: q,
+                    value: (product.discount?.active
+                        ? product.discount.unit_amount
+                        : product.price.unit_amount) / 100 * (parseInt(q) || 1), // Valor total del lote añadido
+                    currency: 'MXN'
+                });
+            } catch (error) {
+                console.error("Error al mandar el Pixel de Facebook:", error);
+            }
+        } else {
+            console.warn("No se pudo cargar la librería react-facebook-pixel correctamente.");
+        }
+       
 
         // 2. Cálculo de Totales Actuales
         const stockIndividual = product.metadata.stock ?? 24;

@@ -11,7 +11,7 @@
 .challenges {
     left: 4vw;
     background-color: white;
-    width: 95%;
+    width: 92%;
     color: var(--blue);
     font-size: max(3vw, 28px);
     display: flex;

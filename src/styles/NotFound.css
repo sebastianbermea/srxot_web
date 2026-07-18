@@ -1,0 +1,112 @@
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    min-height: 80vh;
+    /* Ocupa la mayor parte de la pantalla disponible */
+    padding: 28px 20px;
+    box-sizing: border-box;
+}
+
+.not-found-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 600px;
+}
+
+/* 🎯 Control estricto de la botella para que no se deforme ni crezca de más */
+.not-found-img {
+    width: 92%;
+    max-width: 480px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 24px;
+}
+
+.not-found-content h1 {
+    font-size: 80px;
+    margin: 0;
+    color: var(--pink);
+    line-height: 1;
+}
+
+.not-found-content h2 {
+    font-size: 28px;
+    color: var(--pink);
+    margin: 16px 0 8px 0;
+    line-height: 1.3;
+}
+
+.not-found-content p {
+    font-size: 18px;
+    color: var(--black);
+    margin: 0 0 32px 0;
+}
+
+/* Contenedor de botones */
+.not-found-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Estilo base de los botones sin !important */
+.btn-404 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 48px;
+    cursor: pointer;
+    padding-top: 18px;
+    transition: transform 0.3s ease;
+}
+
+.btn-404.primary {
+    background-color: var(--pink);
+    color: white;
+    border: 3px solid var(--pink);
+}
+
+.btn-404.secondary {
+    background-color: transparent;
+    color: var(--pink);
+    border: 3px solid var(--pink);
+}
+
+/* Efectos hover sutiles para computadoras */
+@media (min-width: 881px) and (hover: hover) {
+    .btn-404:hover {
+        transform: scale(105%);
+    }
+}
+
+/* ==========================================
+   RESPONSIVE MÓVIL
+   ========================================== */
+@media (max-width: 880px) {
+    .not-found-content h1 {
+        font-size: 64px;
+    }
+
+    .not-found-content h2 {
+        font-size: 22px;
+    }
+
+    .not-found-actions {
+        flex-direction: column;
+        /* Botones uno abajo del otro en móvil */
+        gap: 12px;
+        width: 180px
+    }
+
+    .btn-404 {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

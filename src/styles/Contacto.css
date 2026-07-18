@@ -38,15 +38,16 @@
 }
 
 .contacto form button {
-    height: 48px;
+    height: 52px;
     background-color: var(--pink);
-    border-radius: 8px;
-    padding-top: 8px;
+    border-radius: 100px;
+    padding-top: 10px;
     color: white;
     border: none;
     font-family: "AlternateGotNO2";
     font-size: 28px;
     transition: .3s;
+    border: 2px solid var(--dark-pink);
 }
 
 .contacto form button:hover {

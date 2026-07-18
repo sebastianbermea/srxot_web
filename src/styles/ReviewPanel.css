@@ -22,6 +22,7 @@
     justify-content: center;
     margin: 8px 0;
 }
+
 .review-subtitle img {
     height: 16px;
     width: auto;
@@ -34,10 +35,9 @@
 }
 
 .review-panel-layout {
-    display: grid;
-    grid-template-columns: 6% 88% 6%;
+    display: flex;
     align-items: center;
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -63,6 +63,7 @@
     margin-right: -4px;
     will-change: transform;
 }
+
 .review-swiper .swiper-slide {
     height: auto;
     display: flex;
@@ -164,7 +165,7 @@
 }
 
 .review-list-button img {
-    width: 28px;
+    width: 32px;
 }
 
 .review-action {
@@ -189,6 +190,13 @@
     padding-bottom: 9px;
 }
 
+.buttons-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: end;
+    width: 98%;
+}
+
 /* ================= RESPONSIVE MÓVIL Y ESCRITORIO ================= */
 @media (max-width: 880px) {
     .review-panel-layout {
@@ -197,9 +205,6 @@
         padding: 0;
     }
 
-    .review-list-button {
-        display: none;
-    }
 
     .review-card-inner {
         padding: 8px;
@@ -207,8 +212,8 @@
 
     .review-card-img {
         aspect-ratio: 3 / 4;
-            max-height: 350px;
-            height: auto;
+        max-height: 350px;
+        height: auto;
     }
 
     .review-title {

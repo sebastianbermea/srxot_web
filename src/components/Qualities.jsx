@@ -8,10 +8,10 @@ import qual4 from '../assets/images/qualities/quality_icon4.png';
 
 const Qualities = () => {
     const quals = [
-        { id: 1, img: qual1, title: "SABOR PREMIUM", text: "Se utlizan frutas frescas e ingredientes naturales de calidad para darle nuestro sabor premium caracteriztico. Ademas de tener sabores unicos." },
-        { id: 2, img: qual2, title: "NO RASPA", text: "Se combinan los sabores naturales y el porcentaje de alcohol para hacer que esta botella no cale en la garganta y sea disfrutable para cualquier paladar." },
-        { id: 3, img: qual3, title: "DINAMICAS", text: "La botella tiene 12 stickers con numeros por la parte de atras, se pueden usar para determinar segundos, shots o lo que se les venga a la mante, o se pueden utilizar los retos de esta pagina." },
-        { id: 4, img: qual4, title: "VERSATIL", text: "Se puede tomar directamente de shot ya que es un sabor disfrutable, o se puede usar para preparar cocteles facilmente solo con agua mineral o algunos otros pocos ingredientes." },
+        { id: 1, img: qual1, title: "SABOR PREMIUM", text: "Frutas e ingredientes naturales de calidad para darle su sabor premium. Ademas de sabores unicos." },
+        { id: 2, img: qual2, title: "NO RASPA", text: "Lo natural, la calidad y el poco alcohol se combinan para que sea disfrutable para cualquier paladar." },
+        { id: 3, img: qual3, title: "DINAMICAS", text: "Tiene 12 stickers con numeros, se pueden usar para determinar segundos, shots o los retos en esta pagina." },
+        { id: 4, img: qual4, title: "VERSATIL", text: "Se puede tomar de shot, o se puede usar para preparar cocteles facilmente con pocos ingredientes." },
     ];
 
     return (

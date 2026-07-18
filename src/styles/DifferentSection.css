@@ -15,12 +15,14 @@
 .different-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    width: 90%;
+    gap: 16px;
 }
 
 .dif-column {
     border: 2px solid var(--blue);
     border-radius: 32px;
-    margin: 32px;
+  
     color: var(--blue);
     display: flex;
     flex-direction: column;
@@ -54,12 +56,13 @@
 
 .dif-row {
     display: flex;
-    width: 94%;
+    width: 92%;
     gap: 24px;
     font-size: 26px;
     height: 128px;
     justify-content: center;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .dif-row img {

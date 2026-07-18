@@ -9,7 +9,7 @@ nav.navbar_pill {
     /* Centrado perfecto */
     font-family: Brother1816;
     position: fixed;
-    width: 92%;
+    width: 87%;
     z-index: 998;
     background-color: #f8efe8b0;
     border-radius: 60px;
@@ -108,7 +108,7 @@ nav .right_menu img:hover {
 }
 
 nav .right_menu img:active {
-    scale: 95%;
+    scale: 92%;
 }
 
 nav .right_menu .counter {
@@ -141,7 +141,7 @@ nav .mobile {
 
 @media (max-width: 880px) {
     nav.navbar_pill {
-        width: 82%;
+        width: 80%;
     }
 
     nav ul.left_menu,

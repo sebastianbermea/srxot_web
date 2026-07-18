@@ -11,6 +11,7 @@ import { logAnon } from "../functions/auth";
 
 import rightarrow from '../assets/icons/right_arrow_pink.svg';
 import lefttarrow from '../assets/icons/left_arrow_pink.svg';
+import secure_icon from '../assets/icons/secure.svg';
 import CheckoutGate from './CheckoutGate';
 import { costoEnvioGratis } from '../Data';
 
@@ -29,7 +30,7 @@ const Cart = () => {
 
         return acc + (precioParaSumar / 100 * item.quantity);
     }, 0);
-    
+
     const handleCheckoutClick = async () => {
         if (loading) return;
         // Si el usuario ya está logueado (y no es anónimo), va directo a Stripe
@@ -89,7 +90,7 @@ const Cart = () => {
                         initial={{ x: '100%' }}
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
-                        transition={{ type: 'tween', duration: 0.3 }}
+                        transition={{ type: 'tween', duration: 0.2 }}
                     >
                         <div className="cart-header">
                             <h2>Tu Carrito</h2>
@@ -103,7 +104,7 @@ const Cart = () => {
                                 <p>El carrito está vacío</p>
                             ) : (
                                 cartItems.map((item, index) => (
-                                    <div key={item+ "-"+index}>
+                                    <div key={item + "-" + index}>
                                         <div className='cart-item-wrapper'>
                                             <div className='cart-item-image'>
                                                 <img src={item.images[0]} alt={item.name}></img>
@@ -128,7 +129,7 @@ const Cart = () => {
                                                         value={item.quantity}
                                                         onChange={(e) => updateQuantity(item.id, parseInt(e.target.value) || 1, item.selectedSize)}
                                                     />
-                                                   
+
                                                     <button
                                                         onClick={() => updateQuantity(item.id, item.quantity + 1, item.selectedSize)}
                                                     >
@@ -149,11 +150,8 @@ const Cart = () => {
                         </div>
                         <div className="cart-footer">
                             <div className="total-row">
-                                <h5>Subtotal:</h5>
-                                <h4>${total.toLocaleString()} MXN</h4>
-                                <h6>
-                                    {total > costoEnvioGratis ? 'Envio gratis' : 'El envio se calculara a partir de la direccion'}
-                                </h6>
+                                <div className='subtotal-title'><strong>SUBTOTAL:</strong></div>
+                                <div className='cart-subtotal'><div className='subtotal-n'><strong>$ {total.toLocaleString()}</strong></div><div className='subtotal-mxn'>MXN</div></div>
                             </div>
                             <button
                                 className="button-checkout"
@@ -167,7 +165,7 @@ const Cart = () => {
                                         <div className="dot"></div>
                                     </div>
                                 ) : (
-                                    'Ir a pagar'
+                                        <div className='secure-pay'><img className='secure-icon' src={secure_icon} /><div className='pay-text'>IR A PAGAR</div></div>
                                 )}
                             </button>
                         </div>

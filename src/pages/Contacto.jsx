@@ -39,7 +39,7 @@ function Contacto() {
                     <input name='from_email' type="email" className='field' placeholder='Ingresa tu email' required />
 
                     <textarea name='message' id="" className='field-mess' placeholder='Ingresa tu mensaje' required></textarea>
-                    <button type='submit'>Enviar mensaje</button>
+                    <button type='submit'>ENVIAR MENSAJE</button>
                 </form>
                 <div className='social-media'>
                     <a href="https://www.instagram.com/sr.xot">

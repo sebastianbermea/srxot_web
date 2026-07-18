@@ -2,7 +2,7 @@ import { costoEnvioGratis, MAX_TOTAL_CART } from "../Data";
 import { db } from "../firebase/credentials";
 import { collection, doc, addDoc, onSnapshot } from "firebase/firestore";
 
-import { trackStartCheckout } from '../functions/events'; 
+import { trackStartCheckout } from '../functions/events';
 import ReactPixel from 'react-facebook-pixel';
 
 async function createCheckoutSession(uid, cart, guest = true) {
@@ -36,8 +36,8 @@ async function createCheckoutSession(uid, cart, guest = true) {
                     : item.price.unit_amount;
 
                 return acc + (precioParaSumar / 100 * item.quantity);
-            }, 0); 
-            
+            }, 0);
+
             const resumenTallas = cart
                 .filter(item => item.selectedSize) // Solo productos con talla
                 .map(item => `${item.name}: ${item.selectedSize} (x${item.quantity})`)
@@ -53,12 +53,24 @@ async function createCheckoutSession(uid, cart, guest = true) {
 
             trackStartCheckout(guest, subtotal, totalUnidades);
 
-            ReactPixel.track('InitiateCheckout', {
-                value: subtotal,
-                currency: 'MXN',
-                num_items: totalUnidades,
-                content_type: 'product',
-            });
+            const pixelInstance = ReactPixel.default || ReactPixel;
+            if (pixelInstance && typeof pixelInstance.init === 'function') {
+                try {
+                    pixelInstance.track('InitiateCheckout', {
+                        value: subtotal,
+                        currency: 'MXN',
+                        num_items: totalUnidades,
+                        content_type: 'product',
+                    });
+                } catch (error) {
+                    console.error("Error al mandar el Pixel de Facebook:", error);
+                }
+            } else {
+                console.warn("No se pudo cargar la librería react-facebook-pixel correctamente.");
+            }
+
+
+
 
             // añadimos documento para indicar a stripe inteción de compra
             const sessionData = {
@@ -74,11 +86,11 @@ async function createCheckoutSession(uid, cart, guest = true) {
                 phone_number_collection: {
                     enabled: true,
                 },
-        
+
 
                 metadata: {
                     tallas_detalle: resumenTallas || "Sin tallas",
-                    usuario_id: uid, 
+                    usuario_id: uid,
                     user_agent_custom: window.navigator.userAgent
                 },
 
